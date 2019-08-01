@@ -1,0 +1,30 @@
+{
+  "name": "@hash/discounts",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": "EduardoRFS <theeduardorfs@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/jest": "^24.0.16",
+    "@types/node": "^12.6.8",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-airbnb-typescript": "^4.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.14.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "mongoose": "^5.6.7",
+    "reflect-metadata": "^0.1.13",
+    "typegoose": "^5.9.0"
+  }
+}
