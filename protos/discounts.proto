@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package discounts;
+
+service DiscountsService {
+  rpc GetDiscount (DiscountRequest) returns (Discount) {}
+  
+  rpc ListDiscounts (stream DiscountRequest) returns (stream Discount) {}
+}
+
+message DiscountRequest {
+  string product_id = 1;
+  string user_id = 2;
+}
+
+message Discount {
+  float percentage = 1;
+  int32 value_in_cents = 2;
+}
