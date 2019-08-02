@@ -1,5 +1,5 @@
 - pagination
-- authentication
+- rpc authentication?
 - accept multiples products, and multiple users
 
 - discount should be float?
@@ -16,8 +16,11 @@
 - should be /products
 
 - what if user_id or product_id doesn't exists? HA
+- sync protos with typescript
+- static generated grpc
 
-how to describe parallel operations in this diagram
+- how to describe parallel operations in this diagram
+- why use a lib when microservices(type consistency and compatibility, auto break shit)
 
 - new rule: max_discount in cents
 - new rule: discount in cents
