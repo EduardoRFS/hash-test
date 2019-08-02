@@ -1,0 +1,14 @@
+{
+  "name": "@hash/protos",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "EduardoRFS <theeduardorfs@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "./BUILD.sh"
+  },
+  "devDependencies": {
+    "protobufjs": "^6.8.8"
+  }
+}
