@@ -1,0 +1,44 @@
+{
+  "extensions": {
+    "recommendations": [
+      "ms-azuretools.vscode-docker",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "zxh404.vscode-proto3"
+    ]
+  },
+  "folders": [
+    {
+      "name": "discounts",
+      "path": "discounts"
+    },
+    {
+      "name": "protos",
+      "path": "protos"
+    },
+    {
+      "name": "hash-test",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.eol": "\n",
+    "prettier.eslintIntegration": true,
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      {
+        "language": "typescript",
+        "autoFix": true
+      },
+      {
+        "language": "typescriptreact",
+        "autoFix": true
+      }
+    ]
+  }
+}
