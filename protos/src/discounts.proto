@@ -14,6 +14,6 @@ message DiscountRequest {
 }
 
 message Discount {
-  float percentage = 1;
+  float pct = 1;
   int32 value_in_cents = 2;
 }

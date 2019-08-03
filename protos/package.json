@@ -1,7 +1,7 @@
 {
   "name": "@hash/protos",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "EduardoRFS <theeduardorfs@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -9,6 +9,8 @@
     "build": "./BUILD.sh"
   },
   "devDependencies": {
+    "grpc-tools": "^1.8.0",
+    "grpc_tools_node_protoc_ts": "ssh://git@github.com:EduardoRFS/grpc_tools_node_protoc_ts.git#adcd407331a94ec0134db56db32c14dd73c6b161",
     "protobufjs": "^6.8.8"
   }
 }

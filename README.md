@@ -22,6 +22,19 @@
 - how to describe parallel operations in this diagram
 - why use a lib when microservices(type consistency and compatibility, auto break shit)
 
+- send value instead of product_id?
+- lerna
+
+- protos as source of types
+- sudo apt install protobuf-compiler-grpc protobuf-compiler
+
+- usage of grpc-tools is terrible getId()? grr
+- typescript because grpc-tools sucks
+- wrappers because of missing promises
+- remove my github references on grpc
+
+- new field: total_pct, like min is 90%
+- new rule: perhaps discount list?
 - new rule: max_discount in cents
 - new rule: discount in cents
 

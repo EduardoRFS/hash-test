@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package products;
+
+import "discounts.proto";
+
+message Product {
+  string id = 1;
+  uint32 price_in_cents = 2;
+  string title = 3;
+  string description = 4;
+  discounts.Discount discount = 5;
+}
