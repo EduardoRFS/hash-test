@@ -5,9 +5,14 @@
   "author": "EduardoRFS <theeduardorfs@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.16",
+    "@types/mongodb": "^3.1.31",
     "@types/node": "^12.6.8",
+    "@types/ramda": "^0.26.18",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "eslint": "^5.16.0",
@@ -18,12 +23,18 @@
     "eslint-plugin-jest": "^22.14.1",
     "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.8.0",
+    "jest-date-mock": "^1.0.7",
+    "mongodb": "^3.3.0-beta2",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "@hash/protos": "0.0.0",
+    "grpc": "^1.22.2",
+    "jest-with-context": "^1.1.1",
     "mongoose": "^5.6.7",
+    "ramda": "^0.26.1",
     "reflect-metadata": "^0.1.13",
     "typegoose": "^5.9.0"
   }

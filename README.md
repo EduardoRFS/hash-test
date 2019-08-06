@@ -22,6 +22,13 @@
 - how to describe parallel operations in this diagram
 - why use a lib when microservices(type consistency and compatibility, auto break shit)
 
+- why no-shadow
+- check dependencies
+- custom value for date
+- date int64 because makes it universally available a single data type
+- business in e2e because it was easy
+- env for tests
+- is valueInCents of total or the discount value?
 - send value instead of product_id?
 - lerna
 
@@ -32,6 +39,7 @@
 - typescript because grpc-tools sucks
 - wrappers because of missing promises
 - remove my github references on grpc
+- date as int scalar
 
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?
