@@ -22,6 +22,14 @@
 - how to describe parallel operations in this diagram
 - why use a lib when microservices(type consistency and compatibility, auto break shit)
 
+- discount without product or without user
+
+- max price = 2^31 / 100
+
+- moment is huge, but date-fns 2 is still in beta
+
+- date of birth because birthday seens like only the day
+
 - why no-shadow
 - check dependencies
 - custom value for date
@@ -32,6 +40,10 @@
 - send value instead of product_id?
 - lerna
 
+- name choice weird, value for discount and price for product?  
+- uuid because it's easier to scale
+- text because fixed varchar isn't faster
+
 - protos as source of types
 - sudo apt install protobuf-compiler-grpc protobuf-compiler
 
@@ -40,6 +52,9 @@
 - wrappers because of missing promises
 - remove my github references on grpc
 - date as int scalar
+
+- link all deps with yarn workspaces
+- review all package.json
 
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?

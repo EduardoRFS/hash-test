@@ -8,9 +8,11 @@
   "scripts": {
     "build": "./BUILD.sh"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@types/google-protobuf": "^3.7.1",
+    "grpc": "^1.22.2",
     "grpc-tools": "^1.8.0",
-    "grpc_tools_node_protoc_ts": "ssh://git@github.com:EduardoRFS/grpc_tools_node_protoc_ts.git#adcd407331a94ec0134db56db32c14dd73c6b161",
-    "protobufjs": "^6.8.8"
+    "grpc_tools_node_protoc_ts": "*",
+    "grpcc": "^1.1.3"
   }
 }
