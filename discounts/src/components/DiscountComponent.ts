@@ -55,7 +55,7 @@ const rules: Rules = { birthday, blackfriday, maxPercentage };
 
 export const findDiscount = (product: Product, user: User) => {
   const initial: Context = { product, user, previous: {} };
-  const context = Object.entries(rules).reduce(
+  const { previous } = Object.entries(rules).reduce(
     (context, [key, rule]) => ({
       ...context,
       previous: {
@@ -65,7 +65,7 @@ export const findDiscount = (product: Product, user: User) => {
     }),
     initial
   );
-  return Object.values(context.previous).pop() || new Discount();
+  return Object.values(previous).pop() || new Discount();
 };
 export const process = async (requests: DiscountRequest[]) => {
   const productIds = requests.map(request => request.getProductId());

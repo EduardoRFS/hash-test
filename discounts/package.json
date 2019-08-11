@@ -5,7 +5,9 @@
   "author": "EduardoRFS <theeduardorfs@gmail.com>",
   "license": "MIT",
   "private": true,
-  "engines" : { "node" : ">=10.9" },
+  "engines": {
+    "node": ">=10.9"
+  },
   "scripts": {
     "test": "jest",
     "build": "tsc"
@@ -18,7 +20,7 @@
     "@types/uuid": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-airbnb-typescript": "^4.0.1",
     "eslint-config-prettier": "^6.0.0",
@@ -44,5 +46,14 @@
     "typeorm": "^0.2.18",
     "typeorm-naming-strategies": "^1.1.0",
     "uuid": "^3.3.2"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "roots": ["<rootDir>/src", "<rootDir>/tests"],
+    "preset": "ts-jest/presets/js-with-ts"
   }
 }
