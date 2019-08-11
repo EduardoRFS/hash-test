@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package users;
+package hash;
 
 message User {
   string id = 1;

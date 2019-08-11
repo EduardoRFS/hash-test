@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package discounts;
+package hash;
 
 service DiscountsService {
   rpc GetDiscount (DiscountRequest) returns (Discount) {}

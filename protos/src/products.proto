@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package products;
+package hash;
 
 import "discounts.proto";
 
@@ -9,5 +9,5 @@ message Product {
   uint32 price_in_cents = 2;
   string title = 3;
   string description = 4;
-  discounts.Discount discount = 5;
+  Discount discount = 5;
 }

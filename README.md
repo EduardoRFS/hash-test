@@ -32,7 +32,6 @@
 
 - date of birth because birthday seens like only the day
 
-- why no-shadow
 - check dependencies
 - custom value for date
 - date int64 because makes it universally available a single data type
@@ -64,6 +63,12 @@
 - new rule: perhaps discount list?
 - new rule: max_discount in cents
 - new rule: discount in cents
+
+## Why not Go instead of python?
+- ReasonML, Go, Python
+- Reason doesn't have a support to gRPC
+- Go it's strictly procedural and I feel like error prone with it
+- Python is a great usage for this, because it's just, one db hit, one grpc call, one endpoint
 
 ## TODO: ? 3 services
 

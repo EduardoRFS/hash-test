@@ -18,3 +18,10 @@ grpc_tools_node_protoc \
   --ts_out=${DIST} \
   -I ${SRC} \
   ${SRC}/*.proto
+
+GRPC_DIR="../node_modules/grpc-tools"
+
+$GRPC_DIR/bin/protoc \
+  --go_out=plugins=grpc:dist \
+  -I ${SRC} \
+  ${SRC}/*.proto
