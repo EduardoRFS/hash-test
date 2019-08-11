@@ -1,5 +1,5 @@
 import Mali from 'mali';
-import * as services from '@hash/protos/dist/discounts_grpc_pb';
+import * as services from '@hash/protos/build/discounts_grpc_pb';
 
 const app = new Mali(services);
 

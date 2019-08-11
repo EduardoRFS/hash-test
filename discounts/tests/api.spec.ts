@@ -1,10 +1,8 @@
 import grpc from 'grpc';
-import { User } from '@hash/protos/dist/users_pb';
-import { Product } from '@hash/protos/dist/products_pb';
-import { DiscountRequest } from '@hash/protos/dist/discounts_pb';
-import { DiscountsServiceClient } from '@hash/protos/dist/discounts_grpc_pb';
-import * as stream from 'stream';
-import { promisify } from 'util';
+import { User } from '@hash/protos/build/users_pb';
+import { Product } from '@hash/protos/build/products_pb';
+import { DiscountRequest } from '@hash/protos/build/discounts_pb';
+import { DiscountsServiceClient } from '@hash/protos/build/discounts_grpc_pb';
 import { withContext as describe } from 'jest-with-context';
 import R from 'ramda';
 import * as dateMock from 'jest-date-mock';
@@ -13,8 +11,6 @@ import { getRepository } from 'typeorm';
 import * as models from '../src/models';
 import env from '../environment';
 import appLoading from '../src';
-
-const finished = promisify(stream.finished);
 
 const SERVER_URL = env.listen;
 const BLACKFRIDAY = env.discount.blackfriday.day;
@@ -170,10 +166,8 @@ describe<Context>('listDiscount', ({ test, beforeEach }) => {
     const expected = R.times(() => ({ pct: 0, valueInCents: 0 }), users.length);
     expected[1] = { pct: 5, valueInCents: product.getPriceInCents() * 0.05 };
 
-    stream.on('data', discount => {
+    for await (const discount of stream) {
       expect(discount.toObject()).toEqual(expected.shift());
-    });
-
-    await finished(stream);
+    }
   });
 });

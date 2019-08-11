@@ -7,7 +7,6 @@ app.use('getDiscount', async ctx => {
 });
 app.use('listDiscounts', async ctx => {
   // TODO: batch incoming data if needed
-  // eslint-disable-next-line no-restricted-syntax
   for await (const request of ctx.req) {
     const [discount] = await process([request]);
     ctx.res.write(discount);

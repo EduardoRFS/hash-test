@@ -1,4 +1,4 @@
-import { Discount, DiscountRequest } from '@hash/protos/dist/discounts_pb';
+import { Discount, DiscountRequest } from '@hash/protos/build/discounts_pb';
 import { isToday } from 'date-fns';
 import { Dictionary } from 'ts-essentials';
 import R from 'ramda';
@@ -65,7 +65,7 @@ export const findDiscount = (product: Product, user: User) => {
     }),
     initial
   );
-  return Object.values(previous).pop() || new Discount();
+  return R.last(Object.values(previous)) as Discount;
 };
 export const process = async (requests: DiscountRequest[]) => {
   const productIds = requests.map(request => request.getProductId());

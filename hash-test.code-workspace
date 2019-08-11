@@ -13,6 +13,10 @@
       "path": "discounts"
     },
     {
+      "name": "products",
+      "path": "products"
+    },
+    {
       "name": "protos",
       "path": "protos"
     },

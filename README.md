@@ -64,12 +64,6 @@
 - new rule: max_discount in cents
 - new rule: discount in cents
 
-## Why not Go instead of python?
-- ReasonML, Go, Python
-- Reason doesn't have a support to gRPC
-- Go it's strictly procedural and I feel like error prone with it
-- Python is a great usage for this, because it's just, one db hit, one grpc call, one endpoint
-
 ## TODO: ? 3 services
 
 - each one should hit it's only db
