@@ -7,7 +7,9 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 0,
+    'import/no-cycle': 0,
     'import/prefer-default-export': 0,
+    'no-restricted-syntax': 0,
     'no-shadow': 0,
   },
   overrides: [

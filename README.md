@@ -26,6 +26,8 @@
 
 - max price = 2^31 / 100
 
+- improvements tests uses env data
+
 - moment is huge, but date-fns 2 is still in beta
 
 - date of birth because birthday seens like only the day
@@ -56,6 +58,8 @@
 - link all deps with yarn workspaces
 - review all package.json
 
+- migrations
+
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?
 - new rule: max_discount in cents
@@ -63,6 +67,7 @@
 
 ## TODO: ? 3 services
 
+- each one should hit it's only db
 - User managemet
 - Products management
 - Discounts logics

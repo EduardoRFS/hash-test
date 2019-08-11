@@ -6,16 +6,18 @@ import { DiscountsServiceClient } from '@hash/protos/dist/discounts_grpc_pb';
 import * as stream from 'stream';
 import { promisify } from 'util';
 import { withContext as describe } from 'jest-with-context';
-import mongodb from 'mongodb';
 import R from 'ramda';
-import dateMock from 'jest-date-mock';
+import * as dateMock from 'jest-date-mock';
+import uuid from 'uuid/v4';
+import { getRepository } from 'typeorm';
+import * as models from '../src/models';
+import env from '../environment';
+import appLoading from '../src';
 
 const finished = promisify(stream.finished);
 
-const MONGO_URL = 'mongodb://localhost';
-const MONGO_DB = 'test';
-const SERVER_URL = 'localhost:5000';
-const BLACKFRIDAY = new Date(2019, 11, 25, 0, 0, 0).getTime();
+const SERVER_URL = env.listen;
+const BLACKFRIDAY = env.discount.blackfriday.day;
 
 const createDiscountRequest = (
   opts: {
@@ -34,7 +36,6 @@ const createDiscountRequest = (
   return request;
 };
 interface Context {
-  db: mongodb.Db;
   service: DiscountsServiceClient;
   products: Product[];
   product: Product;
@@ -42,17 +43,11 @@ interface Context {
   user: User;
 }
 const setup = async <T>(state: Context): Promise<Context> => {
-  dateMock.clear();
-
-  const createDB = async () => {
-    const client = await mongodb.connect(MONGO_URL, { useNewUrlParser: true });
-    return client.db(MONGO_DB);
-  };
   const creatService = () =>
     new DiscountsServiceClient(SERVER_URL, grpc.credentials.createInsecure());
   const createProduct = (n: number) => {
     const product = new Product();
-    product.setId(`product:${Math.random()}`);
+    product.setId(uuid());
     product.setPriceInCents((n + 1) * 10);
     product.setTitle(`Produto ${n + 1}`);
     product.setDescription("Don' buy this");
@@ -60,24 +55,42 @@ const setup = async <T>(state: Context): Promise<Context> => {
   };
   const createUser = (n: number) => {
     const user = new User();
-    user.setId(`user:${Math.random()}`);
+    user.setId(uuid());
     user.setFirstName('User');
     user.setLastName(`${n}`);
     user.setDateOfBirth(Date.now() - Math.random() * 1e12);
     return user;
   };
-  const db = state.db || (await createDB());
-  const service = state.service || creatService();
+  const saveProducts = (products: Product[]) => {
+    const repo = getRepository(models.Product);
+    const productsModels = products.map(product => {
+      const model = new models.Product();
+      return Object.assign(model, product.toObject());
+    });
+    return repo.save(productsModels);
+  };
+  const saveUsers = (users: User[]) => {
+    const repo = getRepository(models.User);
+    const usersModels = users.map(user => {
+      const model = new models.Product();
+      return Object.assign(model, user.toObject(), {
+        dateOfBirth: new Date(user.getDateOfBirth()),
+      });
+    });
+    return repo.save(usersModels);
+  };
+
+  await appLoading;
+  await dateMock.clear();
+
+  const service = state ? state.service : creatService();
 
   const products = R.times(createProduct, 10);
   const users = R.times(createUser, 10);
 
-  await Promise.all([
-    db.collection('products').save(products.map(prod => prod.toObject())),
-    db.collection('users').save(users.map(user => user.toObject())),
-  ]);
+  await Promise.all([saveProducts(products), saveUsers(users)]);
 
-  return { db, service, products, users, product: products[0], user: users[0] };
+  return { service, products, users, product: products[0], user: users[0] };
 };
 
 describe<Context>('getDiscount', ({ test, beforeEach }) => {
@@ -86,25 +99,25 @@ describe<Context>('getDiscount', ({ test, beforeEach }) => {
     const request = createDiscountRequest();
     const discount = await service.getDiscount(request);
 
-    expect(discount.toObject()).toBe({ pct: 0, valueInCents: 0 });
+    expect(discount.toObject()).toEqual({ pct: 0, valueInCents: 0 });
   });
   test('only product', async ({ service, product }) => {
     const request = createDiscountRequest({ product });
     const discount = await service.getDiscount(request);
 
-    expect(discount.toObject()).toBe({ pct: 0, valueInCents: 0 });
+    expect(discount.toObject()).toEqual({ pct: 0, valueInCents: 0 });
   });
   test('only user', async ({ service, user }) => {
     const request = createDiscountRequest({ user });
     const discount = await service.getDiscount(request);
 
-    expect(discount.toObject()).toBe({ pct: 0, valueInCents: 0 });
+    expect(discount.toObject()).toEqual({ pct: 0, valueInCents: 0 });
   });
   test('no discount', async ({ service, product, user }) => {
     const request = createDiscountRequest({ product, user });
     const discount = await service.getDiscount(request);
 
-    expect(discount.toObject()).toBe({ pct: 0, valueInCents: 0 });
+    expect(discount.toObject()).toEqual({ pct: 0, valueInCents: 0 });
   });
   test('birthday 5%', async ({ service, product, user }) => {
     dateMock.advanceTo(user.getDateOfBirth());
@@ -112,8 +125,8 @@ describe<Context>('getDiscount', ({ test, beforeEach }) => {
     const request = createDiscountRequest({ product, user });
     const discount = await service.getDiscount(request);
 
-    const valueInCents = product.getPriceInCents() * 0.05;
-    expect(discount.toObject()).toBe({ pct: 5, valueInCents });
+    const valueInCents = Math.round(product.getPriceInCents() * 0.05);
+    expect(discount.toObject()).toEqual({ pct: 5, valueInCents });
   });
   test('blackfriday', async ({ service, product, user }) => {
     dateMock.advanceTo(BLACKFRIDAY);
@@ -121,8 +134,8 @@ describe<Context>('getDiscount', ({ test, beforeEach }) => {
     const request = createDiscountRequest({ product, user });
     const discount = await service.getDiscount(request);
 
-    const valueInCents = product.getPriceInCents() * 0.1;
-    expect(discount.toObject()).toBe({ pct: 10, valueInCents });
+    const valueInCents = Math.round(product.getPriceInCents() * 0.1);
+    expect(discount.toObject()).toEqual({ pct: 10, valueInCents });
   });
   test('max percentage, blackfriday and birthday', async ({
     service,
@@ -130,13 +143,13 @@ describe<Context>('getDiscount', ({ test, beforeEach }) => {
     user,
   }) => {
     dateMock.advanceTo(BLACKFRIDAY);
-    user.setDateOfBirth(BLACKFRIDAY);
+    user.setDateOfBirth(BLACKFRIDAY.getTime());
 
     const request = createDiscountRequest({ product, user });
     const discount = await service.getDiscount(request);
 
-    const valueInCents = product.getPriceInCents() * 0.1;
-    expect(discount.toObject()).toBe({ pct: 10, valueInCents });
+    const valueInCents = Math.round(product.getPriceInCents() * 0.1);
+    expect(discount.toObject()).toEqual({ pct: 10, valueInCents });
   });
 });
 describe<Context>('listDiscount', ({ test, beforeEach }) => {
@@ -152,12 +165,13 @@ describe<Context>('listDiscount', ({ test, beforeEach }) => {
       const request = createDiscountRequest({ product, user });
       stream.write(request);
     });
+    stream.end();
 
     const expected = R.times(() => ({ pct: 0, valueInCents: 0 }), users.length);
     expected[1] = { pct: 5, valueInCents: product.getPriceInCents() * 0.05 };
 
     stream.on('data', discount => {
-      expect(discount.toObject()).toBe(expected.shift());
+      expect(discount.toObject()).toEqual(expected.shift());
     });
 
     await finished(stream);
