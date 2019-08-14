@@ -57,6 +57,8 @@
 - link all deps with yarn workspaces
 - review all package.json
 
+- because database matches response, view isn't necessary
+
 - migrations
 
 - new field: total_pct, like min is 90%

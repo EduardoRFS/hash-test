@@ -1,5 +1,5 @@
 import app from '../app';
-import { process } from '../components/DiscountComponent';
+import { process } from '../rules/DiscountRule';
 
 app.use('getDiscount', async ctx => {
   const [discount] = await process([ctx.req]);
