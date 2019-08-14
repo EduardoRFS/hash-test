@@ -9,6 +9,8 @@ export default createConnection({
   ...env.db,
   entities: [Product, User],
   namingStrategy: new SnakeNamingStrategy(),
-})
-  .then(() => app.start(env.listen))
-  .then(() => console.log(`Running at ${env.listen}`));
+}).then(connection => {
+  const server = app.start(env.listen);
+  console.log(`Running at ${env.listen}`);
+  return { server, connection };
+});

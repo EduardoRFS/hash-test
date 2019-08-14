@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node dist/src/index.js"
   },
   "devDependencies": {
     "@types/date-fns": "^2.6.0",
@@ -53,7 +54,10 @@
     "trailingComma": "es5"
   },
   "jest": {
-    "roots": ["<rootDir>/src", "<rootDir>/tests"],
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/tests"
+    ],
     "preset": "ts-jest/presets/js-with-ts"
   }
 }

@@ -38,13 +38,13 @@ interface Context {
   users: User[];
   user: User;
 }
-const setup = async <T>(state: Context): Promise<Context> => {
+const setup = async (state: Context): Promise<Context> => {
   const creatService = () =>
     new DiscountsServiceClient(SERVER_URL, grpc.credentials.createInsecure());
   const createProduct = (n: number) => {
     const product = new Product();
     product.setId(uuid());
-    product.setPriceInCents((n + 1) * 10);
+    product.setPriceInCents((n + 1) * 1e3);
     product.setTitle(`Produto ${n + 1}`);
     product.setDescription("Don' buy this");
     return product;
@@ -170,4 +170,10 @@ describe<Context>('listDiscount', ({ test, beforeEach }) => {
       expect(discount.toObject()).toEqual(expected.shift());
     }
   });
+});
+
+afterAll(async () => {
+  const { server, connection } = await appLoading;
+  server.tryShutdown(() => {});
+  connection.close();
 });
