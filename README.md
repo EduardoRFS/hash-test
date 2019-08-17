@@ -41,7 +41,7 @@
 - send value instead of product_id?
 - lerna
 
-- name choice weird, value for discount and price for product?  
+- name choice weird, value for discount and price for product?
 - uuid because it's easier to scale
 - text because fixed varchar isn't faster
 
@@ -60,6 +60,7 @@
 - because database matches response, view isn't necessary
 
 - migrations
+- missing cors
 
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?

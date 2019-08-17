@@ -74,6 +74,10 @@ typings/
 
 dist
 
+_build
+
+deps
+
 package-lock.json
 
 tsconfig.tsbuildinfo

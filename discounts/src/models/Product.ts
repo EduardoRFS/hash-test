@@ -5,6 +5,7 @@ class Product {
   @PrimaryGeneratedColumn('uuid')
   public id!: string;
 
+  // TODO: should this be unsigned? I don't know
   @Column('int', { unsigned: true })
   public priceInCents!: number;
 
