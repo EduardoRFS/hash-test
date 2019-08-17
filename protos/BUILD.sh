@@ -3,6 +3,9 @@
 SRC="./src"
 DIST="./dist"
 
+yarn;
+mix;
+
 mkdir -p ${DIST}
 
 # JavaScript code generating
@@ -21,7 +24,7 @@ grpc_tools_node_protoc \
 
 GRPC_DIR="../node_modules/grpc-tools"
 
-$GRPC_DIR/bin/protoc \
-  --go_out=plugins=grpc:dist \
-  -I ${SRC} \
-  ${SRC}/*.proto
+# $GRPC_DIR/bin/protoc \
+#   --elixir_out=plugins=grpc:./lib/ \
+#   -I ${SRC} \
+#   ${SRC}/*.proto
