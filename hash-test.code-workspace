@@ -9,16 +9,16 @@
   },
   "folders": [
     {
-      "name": "discounts",
-      "path": "discounts"
+      "name": "packages/discounts",
+      "path": "packages/discounts"
     },
     {
-      "name": "products",
-      "path": "products"
+      "name": "packages/products",
+      "path": "packages/products"
     },
     {
-      "name": "protos",
-      "path": "protos"
+      "name": "packages/protos",
+      "path": "packages/protos"
     },
     {
       "name": "hash-test",

@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/date-fns": "^2.6.0",
     "@types/jest": "^24.0.16",
-    "@types/node": "^12.6.8",
+    "@types/node": "0.0.0",
     "@types/ramda": "^0.26.18",
     "@types/uuid": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
@@ -30,6 +30,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.8.0",
     "jest-date-mock": "^1.0.7",
+    "jest-pnp-resolver": "^1.2.1",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
@@ -44,6 +45,7 @@
     "ramda": "^0.26.1",
     "reflect-metadata": "^0.1.13",
     "ts-essentials": "^3.0.1",
+    "tsc-pnp": "^0.1.0",
     "typeorm": "^0.2.18",
     "typeorm-naming-strategies": "^1.1.0",
     "uuid": "^3.3.2"
@@ -58,6 +60,7 @@
       "<rootDir>/src",
       "<rootDir>/tests"
     ],
-    "preset": "ts-jest/presets/js-with-ts"
+    "preset": "ts-jest/presets/js-with-ts",
+    "resolver": "jest-pnp-resolver"
   }
 }
