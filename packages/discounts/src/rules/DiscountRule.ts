@@ -1,4 +1,4 @@
-import { Discount, DiscountRequest } from '@hash/protos/build/discounts_pb';
+import { Discount, DiscountRequest } from '@hash/protos/dist/discounts_pb';
 import { isToday } from 'date-fns';
 import { Dictionary } from 'ts-essentials';
 import R from 'ramda';

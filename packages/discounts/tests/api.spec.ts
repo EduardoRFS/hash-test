@@ -1,8 +1,8 @@
 import grpc from 'grpc';
-import { User } from '@hash/protos/build/users_pb';
-import { Product } from '@hash/protos/build/products_pb';
-import { DiscountRequest } from '@hash/protos/build/discounts_pb';
-import { DiscountsServiceClient } from '@hash/protos/build/discounts_grpc_pb';
+import { User } from '@hash/protos/dist/users_pb';
+import { Product } from '@hash/protos/dist/products_pb';
+import { DiscountRequest } from '@hash/protos/dist/discounts_pb';
+import { DiscountsServiceClient } from '@hash/protos/dist/discounts_grpc_pb';
 import { withContext as describe } from 'jest-with-context';
 import R from 'ramda';
 import * as dateMock from 'jest-date-mock';
