@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@types/google-protobuf": "^3.7.1",
-    "grpc": "^1.22.2",
+    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#bfd64aeaa43f96f5c9053aeccc19d0ffa95f149f",
     "grpc-tools": "^1.8.0",
     "grpc_tools_node_protoc_ts": "*",
     "grpcc": "^1.1.3"
