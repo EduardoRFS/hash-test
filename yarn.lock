@@ -2327,10 +2327,9 @@ grpc@>=1.6.6:
     node-pre-gyp "^0.13.0"
     protobufjs "^5.0.3"
 
-grpc_tools_node_protoc_ts@*:
+"grpc_tools_node_protoc_ts@https://github.com/EduardoRFS/grpc_tools_node_protoc_ts.git":
   version "2.5.4"
-  resolved "https://registry.yarnpkg.com/grpc_tools_node_protoc_ts/-/grpc_tools_node_protoc_ts-2.5.4.tgz#984b569adfe553df1ff10cb03fbec1c84dc90a52"
-  integrity sha512-8rOC81JoA1ZllA90+GAKGUupNuOyv2qHxKPC6EfbUlZicGmBgjTrCpNz6WQDfgrTRi1H1NbevHBGw/TXpqo3/w==
+  resolved "https://github.com/EduardoRFS/grpc_tools_node_protoc_ts.git#adcd407331a94ec0134db56db32c14dd73c6b161"
   dependencies:
     google-protobuf "3.5.0"
     handlebars "^4.1.2"

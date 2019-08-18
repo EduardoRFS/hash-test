@@ -12,7 +12,7 @@
     "@types/google-protobuf": "^3.7.1",
     "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#bfd64aeaa43f96f5c9053aeccc19d0ffa95f149f",
     "grpc-tools": "^1.8.0",
-    "grpc_tools_node_protoc_ts": "*",
+    "grpc_tools_node_protoc_ts": "https://github.com/EduardoRFS/grpc_tools_node_protoc_ts.git",
     "grpcc": "^1.1.3"
   }
 }

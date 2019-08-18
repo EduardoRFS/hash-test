@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hash.test;
 
-import "discounts";
+import "discounts.proto";
 
 message Product {
   string id = 1;
