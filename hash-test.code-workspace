@@ -9,12 +9,12 @@
   },
   "folders": [
     {
-      "name": "packages/discounts",
-      "path": "packages/discounts"
+      "name": "apps/discounts",
+      "path": "apps/discounts"
     },
     {
-      "name": "packages/products",
-      "path": "packages/products"
+      "name": "apps/products",
+      "path": "apps/products"
     },
     {
       "name": "packages/protos",
