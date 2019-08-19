@@ -4,7 +4,7 @@ export default {
   listen: '0.0.0.0:50051',
   db: {
     type: 'postgres' as const,
-    host: 'localhost',
+    host: 'postgres',
     port: 5432,
     database: 'postgres',
     username: 'postgres',

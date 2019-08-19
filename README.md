@@ -61,6 +61,8 @@
 
 - migrations
 - missing cors
+- alpine breaks protoc
+- logs
 
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?

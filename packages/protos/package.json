@@ -8,11 +8,14 @@
   "scripts": {
     "build": "./BUILD.sh"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/google-protobuf": "^3.7.1",
-    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#bfd64aeaa43f96f5c9053aeccc19d0ffa95f149f",
+    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#a5bc5b7bb402f17a84023c174bab9bb687d80575",
     "grpc-tools": "^1.8.0",
     "grpc_tools_node_protoc_ts": "https://github.com/EduardoRFS/grpc_tools_node_protoc_ts.git",
     "grpcc": "^1.1.3"
+  },
+  "dependencies": {
+    "google-protobuf": "^3.9.1"
   }
 }

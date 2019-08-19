@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "start": "node dist/src/index.js"
+    "start": "NODE_ENV=production node dist/src/index.js"
   },
   "devDependencies": {
     "@types/date-fns": "^2.6.0",
@@ -30,23 +30,20 @@
     "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.8.0",
     "jest-date-mock": "^1.0.7",
-    "jest-pnp-resolver": "^1.2.1",
+    "jest-with-context": "^1.1.1",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@grpc/proto-loader": "^0.5.1",
     "@hash/protos": "0.0.0",
     "date-fns": "^2.0.0-beta.4",
-    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#bfd64aeaa43f96f5c9053aeccc19d0ffa95f149f",
-    "jest-with-context": "^1.1.1",
-    "mali": "https://github.com/EduardoRFS/mali.git#084dcafcb1a0c3e79dc871d7545ed5c5bddd1b7b",
+    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#a5bc5b7bb402f17a84023c174bab9bb687d80575",
+    "mali": "https://github.com/EduardoRFS/mali.git#1791351cf778ed93d1143db875ec4031bdd20622",
     "pg": "^7.12.1",
     "ramda": "^0.26.1",
     "reflect-metadata": "^0.1.13",
     "ts-essentials": "^3.0.1",
-    "tsc-pnp": "^0.1.0",
     "typeorm": "^0.2.18",
     "typeorm-naming-strategies": "^1.1.0",
     "uuid": "^3.3.2"
@@ -61,7 +58,6 @@
       "<rootDir>/src",
       "<rootDir>/tests"
     ],
-    "preset": "ts-jest/presets/js-with-ts",
-    "resolver": "jest-pnp-resolver"
+    "preset": "ts-jest/presets/js-with-ts"
   }
 }

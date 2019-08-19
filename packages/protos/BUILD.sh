@@ -3,9 +3,6 @@
 SRC="./src"
 DIST="./dist"
 
-yarn;
-mix;
-
 mkdir -p ${DIST}
 
 # JavaScript code generating
