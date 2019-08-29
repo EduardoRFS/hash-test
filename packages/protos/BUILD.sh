@@ -3,9 +3,15 @@
 SRC="./src"
 DIST="./dist"
 
+# Find protoc
+PROTOC="./node_modules/grpc-tools/bin/protoc"
+if test ! -f "$PROTOC"; then
+  PROTOC="../../node_modules/grpc-tools/bin/protoc"
+fi
+
 mkdir -p ${DIST}
 
-# JavaScript code generating
+# JavaScript + TypeScript
 grpc_tools_node_protoc \
   --js_out=import_style=commonjs,binary:${DIST} \
   --grpc_out=${DIST} \
@@ -19,7 +25,13 @@ grpc_tools_node_protoc \
   -I ${SRC} \
   ${SRC}/*.proto
 
-GRPC_DIR="../node_modules/grpc-tools"
+# Elixir
+# mix;
+
+# $PROTOC \
+#   --elixir_out=plugins=grpc:${DIST} \
+#   -I ${SRC} \
+#   ${SRC}/*.proto
 
 # $GRPC_DIR/bin/protoc \
 #   --elixir_out=plugins=grpc:./lib/ \

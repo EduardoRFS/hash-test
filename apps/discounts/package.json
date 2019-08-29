@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/date-fns": "^2.6.0",
     "@types/jest": "^24.0.16",
-    "@types/node": "https://github.com/EduardoRFS/types-node.git",
+    "@types/node": "https://github.com/EduardoRFS/types-node.git#6c454721f766383c872f87c24252be7391f90261",
     "@types/ramda": "^0.26.18",
     "@types/uuid": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
@@ -38,7 +38,7 @@
   "dependencies": {
     "@hash/protos": "0.0.0",
     "date-fns": "^2.0.0-beta.4",
-    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#a5bc5b7bb402f17a84023c174bab9bb687d80575",
+    "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#20ba246427f179d5eaaf99bcca893fd7ccc29689",
     "mali": "https://github.com/EduardoRFS/mali.git#1791351cf778ed93d1143db875ec4031bdd20622",
     "pg": "^7.12.1",
     "ramda": "^0.26.1",

@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "deploy": "docker-compose up --build -d"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"

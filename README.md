@@ -62,7 +62,7 @@
 - migrations
 - missing cors
 - alpine breaks protoc
-- logs
+- logs aren't optional, because what if it breaks in production
 
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?

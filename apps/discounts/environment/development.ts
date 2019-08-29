@@ -6,9 +6,9 @@ export default {
     type: 'postgres' as const,
     host: 'localhost',
     port: 5432,
-    database: 'postgres',
+    database: 'discounts',
     username: 'postgres',
-    password: 'postgres',
+    password: 'ai_tem_de_mudar_isso_aqui',
     synchronize: true,
   },
   discount: {

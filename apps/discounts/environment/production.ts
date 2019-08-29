@@ -4,11 +4,11 @@ export default {
   listen: '0.0.0.0:50051',
   db: {
     type: 'postgres' as const,
-    host: 'postgres',
+    host: 'db',
     port: 5432,
-    database: 'postgres',
+    database: 'discounts',
     username: 'postgres',
-    password: 'postgres',
+    password: 'ai_tem_de_mudar_isso_aqui',
     synchronize: true,
   },
   discount: {

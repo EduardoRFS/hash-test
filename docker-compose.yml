@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: discounts
+      POSTGRES_PASSWORD: ai_tem_de_mudar_isso_aqui
+  api-discounts:
+    depends_on:
+      - "db"
+    build:
+      context: .
+      dockerfile: apps/discounts/Dockerfile
+    ports:
+      - "50051:50051"

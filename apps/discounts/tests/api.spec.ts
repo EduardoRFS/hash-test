@@ -10,7 +10,7 @@ import uuid from 'uuid/v4';
 import { getRepository } from 'typeorm';
 import * as models from '../src/models';
 import env from '../environment';
-import appLoading from '../src';
+import appPromise from '../src';
 
 const SERVER_URL = env.listen;
 const BLACKFRIDAY = env.discount.blackfriday.day;
@@ -76,8 +76,11 @@ const setup = async (state: Context): Promise<Context> => {
     return repo.save(usersModels);
   };
 
-  await appLoading;
   await dateMock.clear();
+  await jest.spyOn(global.console, 'error').mockImplementation();
+  await jest.spyOn(global.console, 'info').mockImplementation();
+
+  await appPromise;
 
   const service = state ? state.service : creatService();
 
@@ -155,7 +158,7 @@ describe<Context>('listDiscount', ({ test, beforeEach }) => {
     const [, product] = products;
     dateMock.advanceTo(user.getDateOfBirth());
 
-    const stream = await service.listDiscounts();
+    const stream = service.listDiscounts();
 
     R.zip(products, users).forEach(([product, user]) => {
       const request = createDiscountRequest({ product, user });
@@ -171,9 +174,23 @@ describe<Context>('listDiscount', ({ test, beforeEach }) => {
     }
   });
 });
+describe<Context>('logRequests', ({ test, beforeEach }) => {
+  beforeEach(setup);
+  test('on error', async ({ service, user }) => {
+    const fn = global.console.error as jest.Mock;
+    fn.mockImplementationOnce((data: { error: Error }) => {
+      expect(data.error).toBeInstanceOf(Error);
+    });
 
+    user.setId('some invalid id');
+    const request = createDiscountRequest({ user });
+
+    const promise = service.getDiscount(request);
+    await expect(promise).rejects.toBeInstanceOf(Error);
+  });
+});
 afterAll(async () => {
-  const { server, connection } = await appLoading;
+  const { server, connection } = await appPromise;
   server.tryShutdown(() => {});
   connection.close();
 });
