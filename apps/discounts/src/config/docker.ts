@@ -1,16 +1,9 @@
 import { parse as parseDate } from 'date-fns';
+import ormconfig from './docker.ormconfig';
 
 export default {
   listen: '0.0.0.0:50051',
-  db: {
-    type: 'postgres' as const,
-    host: 'localhost',
-    port: 5432,
-    database: 'discounts',
-    username: 'postgres',
-    password: 'ai_tem_de_mudar_isso_aqui',
-    synchronize: true,
-  },
+  db: ormconfig,
   discount: {
     birthday: { percentage: 5 },
     blackfriday: {

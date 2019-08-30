@@ -15,5 +15,4 @@ class Product {
   @Column('text')
   public description!: string;
 }
-
 export default Product;

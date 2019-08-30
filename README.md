@@ -3,11 +3,12 @@
 - accept multiples products, and multiple users
 
 - discount should be float?
-
+- write readmes
+- setup local env
 - why get the product two times?
 - probably stream by chunks
 - reason of discount
-
+- ideally deploy should have the same setting as development
 - I don't know if I need to get the product again
 
 - think about cupom code and default discount

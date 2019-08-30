@@ -9,7 +9,7 @@ app.use(async (ctx, next) => {
     .catch(err => [logger.error(err), err]);
 
   const [, time] = process.hrtime(timeInitial);
-  await log({ call, time: `${time}ns` });
+  log({ call, time: `${time}ns` });
 
   if (error) {
     throw error;

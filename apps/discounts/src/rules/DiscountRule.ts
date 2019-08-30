@@ -2,7 +2,7 @@ import { Discount, DiscountRequest } from '@hash/protos/dist/discounts_pb';
 import { isToday } from 'date-fns';
 import { Dictionary } from 'ts-essentials';
 import R from 'ramda';
-import env from '../../environment';
+import env from '../config';
 import User from '../models/User';
 import Product from '../models/Product';
 import findByIds from '../utils/findByIds';

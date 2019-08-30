@@ -1,17 +1,23 @@
 version: "3"
 services:
-  db:
+  db-users:
     image: postgres
-    ports:
-      - "5432:5432"
     environment:
-      POSTGRES_DB: discounts
+      POSTGRES_DB: users
+      POSTGRES_PASSWORD: ai_tem_de_mudar_isso_aqui
+  db-products:
+    image: postgres
+    environment:
+      POSTGRES_DB: products
       POSTGRES_PASSWORD: ai_tem_de_mudar_isso_aqui
   api-discounts:
     depends_on:
-      - "db"
+      - "db-users"
+      - "db-products"
     build:
       context: .
       dockerfile: apps/discounts/Dockerfile
     ports:
       - "50051:50051"
+    environment:
+      ENV_NAME: "docker"

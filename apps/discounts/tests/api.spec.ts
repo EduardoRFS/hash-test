@@ -9,8 +9,9 @@ import * as dateMock from 'jest-date-mock';
 import uuid from 'uuid/v4';
 import { getRepository } from 'typeorm';
 import * as models from '../src/models';
-import env from '../environment';
+import env from '../src/config';
 import appPromise from '../src';
+import findConnection from '../src/utils/findConnection';
 
 const SERVER_URL = env.listen;
 const BLACKFRIDAY = env.discount.blackfriday.day;
@@ -58,7 +59,8 @@ const setup = async (state: Context): Promise<Context> => {
     return user;
   };
   const saveProducts = (products: Product[]) => {
-    const repo = getRepository(models.Product);
+    const connection = findConnection(models.Product);
+    const repo = getRepository(models.Product, connection);
     const productsModels = products.map(product => {
       const model = new models.Product();
       return Object.assign(model, product.toObject());
@@ -66,9 +68,10 @@ const setup = async (state: Context): Promise<Context> => {
     return repo.save(productsModels);
   };
   const saveUsers = (users: User[]) => {
-    const repo = getRepository(models.User);
+    const connection = findConnection(models.User);
+    const repo = getRepository(models.User, connection);
     const usersModels = users.map(user => {
-      const model = new models.Product();
+      const model = new models.User();
       return Object.assign(model, user.toObject(), {
         dateOfBirth: new Date(user.getDateOfBirth()),
       });
@@ -190,7 +193,7 @@ describe<Context>('logRequests', ({ test, beforeEach }) => {
   });
 });
 afterAll(async () => {
-  const { server, connection } = await appPromise;
+  const { server, connections } = await appPromise;
   server.tryShutdown(() => {});
-  connection.close();
+  connections.forEach(conn => conn.close());
 });
