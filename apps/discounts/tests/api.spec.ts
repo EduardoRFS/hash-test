@@ -79,9 +79,9 @@ const setup = async (state: Context): Promise<Context> => {
     return repo.save(usersModels);
   };
 
-  await dateMock.clear();
-  await jest.spyOn(global.console, 'error').mockImplementation();
-  await jest.spyOn(global.console, 'info').mockImplementation();
+  dateMock.clear();
+  jest.spyOn(global.console, 'error').mockImplementation();
+  jest.spyOn(global.console, 'info').mockImplementation();
 
   await appPromise;
 
@@ -195,5 +195,7 @@ describe<Context>('logRequests', ({ test, beforeEach }) => {
 afterAll(async () => {
   const { server, connections } = await appPromise;
   server.tryShutdown(() => {});
-  connections.forEach(conn => conn.close());
+  connections.forEach(conn => {
+    conn.close();
+  });
 });

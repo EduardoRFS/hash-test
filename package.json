@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "databases": " docker inspect --format='{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -a) | grep db",
+    "populate": "./POPULATE.sh",
     "deploy": "docker-compose up --build -d"
   },
   "workspaces": [

@@ -9,7 +9,7 @@
     "node": ">=10.9"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "tsc",
     "typeorm": "./typeorm.sh",
     "migration:run": "yarn typeorm migration:run -c products & yarn typeorm migration:run -c users",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@hash/protos": "0.0.0",
-    "date-fns": "^2.0.0-beta.4",
+    "date-fns": "^2.0.1",
     "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#20ba246427f179d5eaaf99bcca893fd7ccc29689",
     "mali": "https://github.com/EduardoRFS/mali.git#51fe4dc4befdc2df11b2e3eb6a053d149ecbd8e0",
     "pg": "^7.12.1",

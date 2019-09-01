@@ -1,78 +1,78 @@
+## To ask
+
+- why i'm using postgres?
 - pagination
 - rpc authentication?
-- accept multiples products, and multiple users
-
-- discount should be float?
-- write readmes
-- setup local env
 - why get the product two times?
-- probably stream by chunks
-- reason of discount
-- ideally deploy should have the same setting as development
-- I don't know if I need to get the product again
-
 - think about cupom code and default discount
-
-- probably will need to have discounts based on category that's why we have product_id
-- should be /products
-
 - what if user_id or product_id doesn't exists? HA
-- sync protos with typescript
-- static generated grpc
-
-- how to describe parallel operations in this diagram
 - why use a lib when microservices(type consistency and compatibility, auto break shit)
-
 - discount without product or without user
-
-- max price = 2^31 / 100
-
-- improvements tests uses env data
-
-- moment is huge, but date-fns 2 is still in beta
-
-- date of birth because birthday seens like only the day
-
-- check dependencies
-- custom value for date
-- date int64 because makes it universally available a single data type
-- business in e2e because it was easy
-- env for tests
-- is valueInCents of total or the discount value?
-- send value instead of product_id?
-- lerna
-
-- name choice weird, value for discount and price for product?
-- uuid because it's easier to scale
-- text because fixed varchar isn't faster
-
-- protos as source of types
-- sudo apt install protobuf-compiler-grpc protobuf-compiler
-
-- usage of grpc-tools is terrible getId()? grr
-- typescript because grpc-tools sucks
-- wrappers because of missing promises
-- remove my github references on grpc
-- date as int scalar
-
-- link all deps with yarn workspaces
-- review all package.json
-
-- because database matches response, view isn't necessary
-
-- migrations
-- missing cors
-- alpine breaks protoc
-- logs aren't optional, because what if it breaks in production
-
 - new field: total_pct, like min is 90%
 - new rule: perhaps discount list?
 - new rule: max_discount in cents
 - new rule: discount in cents
-
-## TODO: ? 3 services
-
+- should be /products
+- is valueInCents of total or the discount value?
+- send price instead of product_id?
+- protos as source of types
+- name choice weird, value for discount and price for product?
 - each one should hit it's only db
 - User managemet
 - Products management
 - Discounts logics
+- max price = 2^31 / 100
+
+## TODO
+
+- write readmes
+- lerna
+- improvements tests uses env data
+
+## Review
+
+- migrations on every run? Seriously?
+- probably will need to have discounts based on category that's why we have product_id
+- logs aren't optional, because what if it breaks in production
+- discount should be float?
+- date of birth because birthday seens like only the day
+- reason of discount
+
+## Grr
+
+- date as int scalar
+- custom value for date
+
+## I think that is fine
+
+- ~~run tests on docker db~~ run with ./populate.sh
+- missing cors
+- I don't know if I need to get the product again
+- how to describe parallel operations in this diagram
+- because database matches response, view isn't necessary
+- sudo apt install protobuf-compiler-grpc protobuf-compiler
+- date int64 because makes it universally available a single data type
+
+## Done
+
+- review all package.json
+- check dependencies
+- ideally deploy should have the same setting as development
+- ~~script populate table~~ tests already do that
+- ~~alpine breaks protoc~~ multistage build
+- moment is huge, but ~~date-fns 2 is still in beta~~ was
+- static generated grpc
+- sync protos with typescript
+- migrations
+- ~~remove my github references on grpc~~
+- ~~usage of grpc-tools is terrible getId()? grr~~
+- ~~typescript because grpc-tools sucks~~
+- link all deps with yarn workspaces
+- text because fixed varchar isn't faster
+- uuid because it's easier to scale
+- ~~wrappers because of missing promises~~
+- ~~accept multiples products, and multiple users~~
+- setup local env
+- ~~env for tests~~
+- ~~probably stream by chunks~~
+- business in e2e because it was easy

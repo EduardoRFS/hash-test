@@ -4,10 +4,10 @@ import config from '../config';
 type Entity = new (...args: unknown[]) => unknown;
 
 const entries = config.db.flatMap(conn =>
-  (conn.entities || []).map(entity => [entity, conn.name])
+  (conn.entities as unknown[]).map(entity => [entity, conn.name])
 ) as [Entity, string][];
 const connectionsByEntity = new Map(entries);
 
 const findConnection = <T extends Entity>(entity: T) =>
-  connectionsByEntity.get(entity) || 'default';
+  connectionsByEntity.get(entity) as string;
 export default findConnection;

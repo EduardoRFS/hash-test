@@ -17,7 +17,7 @@ const connections: ConnectionOptions[] = [
     namingStrategy: new SnakeNamingStrategy(),
     migrations: [path.resolve(__dirname, '../migrations/users/*.js')],
     cli: {
-      migrationsDir: 'src/migrations/products',
+      migrationsDir: 'src/migrations/users',
     },
   },
   {
@@ -30,7 +30,7 @@ const connections: ConnectionOptions[] = [
     password: 'ai_tem_de_mudar_isso_aqui',
     type: 'postgres',
     namingStrategy: new SnakeNamingStrategy(),
-    migrations: [path.resolve(__dirname, '../migrations/users/*.js')],
+    migrations: [path.resolve(__dirname, '../migrations/products/*.js')],
     cli: {
       migrationsDir: 'src/migrations/products',
     },
