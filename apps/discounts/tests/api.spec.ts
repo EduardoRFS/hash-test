@@ -195,7 +195,5 @@ describe<Context>('logRequests', ({ test, beforeEach }) => {
 afterAll(async () => {
   const { server, connections } = await appPromise;
   server.tryShutdown(() => {});
-  connections.forEach(conn => {
-    conn.close();
-  });
+  await Promise.all(connections.map(conn => conn.close()));
 });

@@ -1,5 +1,10 @@
 yarn;
 yarn deploy;
+
+cd packages/protos
+yarn build
+cd ../../
+
 echo '
 cd /code/apps/discounts
 ENV_NAME=docker yarn test

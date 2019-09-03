@@ -1,7 +1,7 @@
 import { app } from '..';
-import { process } from '../rules/DiscountRule';
+import executeRequest from '../rules/executeRequest';
 
 app.use('getDiscount', async ctx => {
-  const [discount] = await process([ctx.req]);
+  const [discount] = await executeRequest([ctx.req]);
   ctx.res = discount;
 });
