@@ -1,3 +1,7 @@
+# Teste da Hash
+
+Para ver informações individuais de cada projeto, como explicação de arquitetura e detalhes de implementação, leia os `README.md` em `/apps/discounts` e `/apps/products`.
+
 ## Requerimentos
 
 - yarn instalado ... [guia de instação](https://yarnpkg.com/en/docs/install#alternatives-stable)

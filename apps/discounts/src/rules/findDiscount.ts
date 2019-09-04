@@ -2,7 +2,7 @@ import { Discount } from '@hash/protos/dist/discounts_pb';
 import R from 'ramda';
 import User from '../models/User';
 import Product from '../models/Product';
-import rules from './rules';
+import rules from './discountRules';
 import { Context } from './interfaces';
 
 const findDiscount = (product: Product, user: User) => {
