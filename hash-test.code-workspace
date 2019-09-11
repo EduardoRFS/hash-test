@@ -17,6 +17,14 @@
       "path": "apps/products"
     },
     {
+      "name": "apps/users",
+      "path": "apps/users"
+    },
+    {
+      "name": "packages/utils",
+      "path": "packages/utils"
+    },
+    {
       "name": "packages/protos",
       "path": "packages/protos"
     },
