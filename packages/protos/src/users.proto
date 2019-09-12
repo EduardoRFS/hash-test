@@ -2,6 +2,36 @@ syntax = "proto3";
 
 package hash.test;
 
+import "google_status.proto";
+
+service UsersService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc ReadUser(ReadUserRequest) returns (ReadUserResponse);
+}
+
+message CreateUserRequest {
+  // all of them are required
+  string first_name = 1;
+  string last_name = 2;
+  int64 date_of_birth = 3;
+}
+message CreateUserResponse {
+  google.rpc.Status status = 1;
+  User user = 2;
+}
+
+message ReadUserOptions {
+  uint32 cache_age = 1;
+}
+message ReadUserRequest {
+  ReadUserOptions options = 1;
+  string id = 2;
+}
+message ReadUserResponse {
+  google.rpc.Status status = 1;
+  User user = 2;
+}
+
 message User {
   string id = 1;
   string first_name = 2;

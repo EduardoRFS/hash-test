@@ -4,6 +4,18 @@ package hash.test;
 
 import "discounts.proto";
 
+service ProductsService {
+  rpc GetProduct(ProductRequest) returns (Product) {}
+}
+
+message ReadProductOptions {
+  bool cache = 1;
+  bool discount = 2;
+}
+message ProductRequest {
+  ReadProductOptions options = 1;
+  string id = 2;
+}
 message Product {
   string id = 1;
   uint32 price_in_cents = 2;
