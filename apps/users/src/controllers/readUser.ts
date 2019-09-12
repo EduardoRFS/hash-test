@@ -8,14 +8,17 @@ import { FindById, toProto } from '../services/user';
 interface DI {
   cache: memoize.Cache;
   findById: FindById;
+  config: {
+    idLength: number;
+  };
 }
 
-export default ({ cache, findById }: DI) => {
+export default ({ cache, config, findById }: DI) => {
   const { ok, notFound } = createRespond(ReadUserResponse);
   const validate = createValidation(
     ReadUserResponse,
     yup.object({
-      id: yup.string().length(36),
+      id: yup.string().length(config.idLength),
     })
   );
 

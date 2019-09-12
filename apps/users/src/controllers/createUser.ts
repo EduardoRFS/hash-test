@@ -3,12 +3,15 @@ import compose from '@malijs/compose';
 import { createValidation, createRespond } from '@hash/utils';
 import { CreateUserResponse } from '@hash/protos/dist/users_pb';
 import { CreateUser } from './interfaces';
-import { Config } from '../config';
 import { Create, toProto } from '../services/user';
 
 interface DI {
   create: Create;
-  config: Config;
+  config: {
+    minFirstName: number;
+    minLastName: number;
+    minDateOfBirth: number;
+  };
 }
 export default ({ create, config }: DI) => {
   const { ok } = createRespond(CreateUserResponse);

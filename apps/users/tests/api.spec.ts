@@ -160,8 +160,15 @@ describe<Context>('readUser', ({ test, beforeAll }) => {
 describe<Context>('listUsers', ({ test, beforeAll }) => {
   beforeAll(setup);
 
-  const request = (service: UsersServiceClient, maxAge?: number) => {
+  const request = (
+    service: UsersServiceClient,
+    ids?: string[],
+    maxAge?: number
+  ) => {
     const request = new ListUsersRequest();
+    if (ids) {
+      request.setIdList(ids);
+    }
     if (maxAge) {
       const options = new ListUsersOptions();
       options.setCacheAge(maxAge);
@@ -179,6 +186,25 @@ describe<Context>('listUsers', ({ test, beforeAll }) => {
 
     expect(status.getCode()).toBe(Code.OK);
     R.zip(users, models).forEach(([user, model]) => {
+      expect(user.getId()).toBe(model.id);
+      expect(user.getFirstName()).toBe(model.firstName);
+      expect(user.getLastName()).toBe(model.lastName);
+      expect(user.getDateOfBirth()).toBe(model.dateOfBirth.getTime());
+    });
+  });
+  test('by ids', async ({ service, users: models }) => {
+    const selectedModels = models.slice(2, 5);
+    const ids = selectedModels.map(model => model.id);
+    const response = await request(service, ids);
+
+    const status = response.getStatus() as Status;
+    const users = response.getUsersList();
+
+    expect(status).toBeDefined();
+    expect(users.length).toBe(selectedModels.length);
+
+    expect(status.getCode()).toBe(Code.OK);
+    R.zip(users, selectedModels).forEach(([user, model]) => {
       expect(user.getId()).toBe(model.id);
       expect(user.getFirstName()).toBe(model.firstName);
       expect(user.getLastName()).toBe(model.lastName);

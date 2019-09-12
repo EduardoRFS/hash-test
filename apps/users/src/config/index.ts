@@ -20,6 +20,7 @@ export interface Config {
     maxAge: number;
     maxSize: number; // entries
   };
+  idLength: number;
   minFirstName: number;
   minLastName: number;
   minDateOfBirth: number;
@@ -32,6 +33,7 @@ const config: Config = {
     maxAge: 1000 * 60 * 60, // 1h
     maxSize: 10240,
   },
+  idLength: 36,
   minFirstName: 2,
   minLastName: 2,
   minDateOfBirth: -2208977612000, // 01-01-1900
