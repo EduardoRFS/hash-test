@@ -21,7 +21,7 @@ test('avoid calls', async () => {
   const cache = memoize.cache({ maxSize: 10 });
   const memoized = memoize(ctx => {
     ctx.res = new ReadUserResponse();
-  })(cache);
+  }, cache);
 
   const contextA = createContext('avoid calls', 20);
   const contextB = createContext('avoid calls', 20);
@@ -36,7 +36,7 @@ describe('cache invalidation', () => {
     const cache = memoize.cache({ maxSize: 10 });
     const memoized = memoize(ctx => {
       ctx.res = new ReadUserResponse();
-    })(cache);
+    }, cache);
 
     const contextA = createContext('avoid calls A', 20);
     const contextB = createContext('avoid calls B', 20);
@@ -50,7 +50,7 @@ describe('cache invalidation', () => {
     const cache = memoize.cache({ maxSize: 10 });
     const memoized = memoize(ctx => {
       ctx.res = new ReadUserResponse();
-    })(cache);
+    }, cache);
 
     const contextA = createContext('avoid calls', 20);
     const contextB = createContext('avoid calls', 20);

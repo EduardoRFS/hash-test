@@ -1,6 +1,17 @@
 import * as yup from 'yup';
-import { Validation } from './interfaces';
+import { Request, Response, Class } from './interfaces';
 import createRespond from './respond';
+
+export type Validation = <T extends Response, U>(
+  Factory: Class<T>,
+  schema: yup.Schema<U>
+) => (
+  ctx: {
+    req: Request;
+    res: T;
+  },
+  next: () => unknown
+) => Promise<void>;
 
 const createValidation: Validation = (Factory, schema) => {
   const { invalidArgument } = createRespond(Factory);
