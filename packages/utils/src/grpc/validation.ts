@@ -19,14 +19,16 @@ const createValidation: Validation = (Factory, schema) => {
   return async (ctx, next) => {
     try {
       await schema.validate(ctx.req.toObject());
-      next();
+      await next();
     } catch (error) {
       if (!(error instanceof yup.ValidationError)) {
         throw error;
       }
       ctx.res = invalidArgument({
         message: error.message,
-        details: error.errors,
+        details: error.errors.map(detail =>
+          Buffer.from(detail).toString('base64')
+        ),
       });
     }
   };
