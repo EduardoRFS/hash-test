@@ -8,10 +8,13 @@ import {
   ReadUserRequest,
   CreateUserResponse,
   ReadUserOptions,
+  ListUsersRequest,
+  ListUsersOptions,
 } from '@hash/protos/dist/users_pb';
 import { UsersServiceClient } from '@hash/protos/dist/users_grpc_pb';
 import { Status } from '@hash/protos/dist/google_status_pb';
 import { Code } from '@hash/protos/dist/google_code_pb';
+import { getRepository } from 'typeorm';
 import UserModel from '../src/models/User';
 import * as userService from '../src/services/user';
 import env from '../src/config';
@@ -38,6 +41,7 @@ const setup = async (state: Context): Promise<Context> => {
     return userService.create(users);
   };
   await appPromise;
+  await getRepository(UserModel).clear();
 
   const service =
     (state || {}).service ||
@@ -150,6 +154,36 @@ describe<Context>('readUser', ({ test, beforeAll }) => {
     expect(response.getUser()).toBeUndefined();
 
     expect(status.getCode()).toBe(Code.INVALID_ARGUMENT);
+  });
+});
+
+describe<Context>('listUsers', ({ test, beforeAll }) => {
+  beforeAll(setup);
+
+  const request = (service: UsersServiceClient, maxAge?: number) => {
+    const request = new ListUsersRequest();
+    if (maxAge) {
+      const options = new ListUsersOptions();
+      options.setCacheAge(maxAge);
+      request.setOptions(options);
+    }
+    return service.listUsers(request);
+  };
+  test('list all users', async ({ service, users: models }) => {
+    const response = await request(service);
+    const status = response.getStatus() as Status;
+    const users = response.getUsersList();
+
+    expect(status).toBeDefined();
+    expect(users.length).toBe(models.length);
+
+    expect(status.getCode()).toBe(Code.OK);
+    R.zip(users, models).forEach(([user, model]) => {
+      expect(user.getId()).toBe(model.id);
+      expect(user.getFirstName()).toBe(model.firstName);
+      expect(user.getLastName()).toBe(model.lastName);
+      expect(user.getDateOfBirth()).toBe(model.dateOfBirth.getTime());
+    });
   });
 });
 afterAll(async () => {

@@ -7,6 +7,7 @@ import "google_status.proto";
 service UsersService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
   rpc ReadUser(ReadUserRequest) returns (ReadUserResponse);
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
 }
 
 message CreateUserRequest {
@@ -30,6 +31,17 @@ message ReadUserRequest {
 message ReadUserResponse {
   google.rpc.Status status = 1;
   User user = 2;
+}
+
+message ListUsersOptions {
+  uint32 cache_age = 1;
+}
+message ListUsersRequest {
+  ListUsersOptions options = 1;
+}
+message ListUsersResponse {
+  google.rpc.Status status = 1;
+  repeated User users = 2;
 }
 
 message User {
