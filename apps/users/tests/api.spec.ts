@@ -15,8 +15,7 @@ import { UsersServiceClient } from '@hash/protos/dist/users_grpc_pb';
 import { Status } from '@hash/protos/dist/google_status_pb';
 import { Code } from '@hash/protos/dist/google_code_pb';
 import { getRepository } from 'typeorm';
-import UserModel from '../src/models/User';
-import * as userService from '../src/utils/user';
+import * as Model from '../src/models/User';
 import env from '../src/config';
 import appPromise from '../src';
 
@@ -24,12 +23,12 @@ const SERVER_URL = env.listen;
 
 interface Context {
   service: UsersServiceClient;
-  user: UserModel;
-  users: UserModel[];
+  user: Model.User;
+  users: Model.User[];
 }
 
 const setup = async (state: Context): Promise<Context> => {
-  const createUser = (i: number = Math.random()): UserModel => ({
+  const createUser = (i: number = Math.random()): Model.User => ({
     createdAt: new Date(),
     id: uuid(),
     firstName: `User ${i}`,
@@ -38,10 +37,10 @@ const setup = async (state: Context): Promise<Context> => {
   });
   const createUsers = (amount: number) => {
     const users = R.times(createUser, amount);
-    return userService.create(users);
+    return Model.create(users);
   };
   await appPromise;
-  await getRepository(UserModel).clear();
+  await getRepository(Model.User).clear();
 
   const service =
     (state || {}).service ||
@@ -212,6 +211,7 @@ describe<Context>('listUsers', ({ test, beforeAll }) => {
     });
   });
 });
+
 afterAll(async () => {
   const { server, connection } = await appPromise;
   server.tryShutdown(() => {});

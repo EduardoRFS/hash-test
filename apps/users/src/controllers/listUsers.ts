@@ -4,7 +4,7 @@ import { createRespond, createValidation, memoize } from '@hash/utils';
 import { ListUsersResponse } from '@hash/protos/dist/users_pb';
 import { ListUsers } from './interfaces';
 import { Find, FindByIds } from '../models/User';
-import toProto from '../utils/toProto';
+import { toProto } from '../services/user';
 
 interface DI {
   cache: memoize.Cache;

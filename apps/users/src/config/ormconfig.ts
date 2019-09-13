@@ -1,6 +1,6 @@
 import path from 'path';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import User from '../models/User';
+import { User } from '../models/User';
 
 export = {
   type: 'postgres' as const,

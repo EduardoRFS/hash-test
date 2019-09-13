@@ -4,7 +4,7 @@ import { createValidation, createRespond } from '@hash/utils';
 import { CreateUserResponse } from '@hash/protos/dist/users_pb';
 import { CreateUser } from './interfaces';
 import { Create } from '../models/User';
-import toProto from '../utils/toProto';
+import { toProto } from '../services/user';
 
 interface DI {
   create: Create;

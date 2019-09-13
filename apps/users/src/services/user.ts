@@ -1,7 +1,7 @@
 import { User as UserProto } from '@hash/protos/dist/users_pb';
 import { User as UserModel } from '../models/User';
 
-const toProto = (model: UserModel) => {
+export const toProto = (model: UserModel) => {
   const proto = new UserProto();
   proto.setId(model.id);
   proto.setFirstName(model.firstName);
@@ -9,4 +9,3 @@ const toProto = (model: UserModel) => {
   proto.setDateOfBirth(model.dateOfBirth.getTime());
   return proto;
 };
-export default toProto;
