@@ -16,7 +16,7 @@ import { Status } from '@hash/protos/dist/google_status_pb';
 import { Code } from '@hash/protos/dist/google_code_pb';
 import { getRepository } from 'typeorm';
 import UserModel from '../src/models/User';
-import * as userService from '../src/services/user';
+import * as userService from '../src/utils/user';
 import env from '../src/config';
 import appPromise from '../src';
 

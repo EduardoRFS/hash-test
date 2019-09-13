@@ -3,7 +3,8 @@ import compose from '@malijs/compose';
 import { createRespond, createValidation, memoize } from '@hash/utils';
 import { ListUsersResponse } from '@hash/protos/dist/users_pb';
 import { ListUsers } from './interfaces';
-import { Find, FindByIds, toProto } from '../services/user';
+import { Find, FindByIds } from '../models/User';
+import toProto from '../utils/toProto';
 
 interface DI {
   cache: memoize.Cache;

@@ -3,7 +3,8 @@ import compose from '@malijs/compose';
 import { createValidation, createRespond } from '@hash/utils';
 import { CreateUserResponse } from '@hash/protos/dist/users_pb';
 import { CreateUser } from './interfaces';
-import { Create, toProto } from '../services/user';
+import { Create } from '../models/User';
+import toProto from '../utils/toProto';
 
 interface DI {
   create: Create;

@@ -8,7 +8,7 @@ import R from 'ramda';
 import * as dateMock from 'jest-date-mock';
 import uuid from 'uuid/v4';
 import { getRepository } from 'typeorm';
-import * as models from '../src/models';
+import * as models from '../src/services';
 import env from '../src/config';
 import appPromise from '../src';
 import findConnection from '../src/utils/findConnection';

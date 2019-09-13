@@ -28,7 +28,7 @@ defmodule Protos.Mixfile do
       maintainers: ["EduardoRFS"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/EduardoRFS/hash-test"},
-      files: ~w(mix.exs README.md lib/protobuf lib/protobuf.ex src config)
+      files: ~w(mix.exs README.md src)
     ]
   end
 end

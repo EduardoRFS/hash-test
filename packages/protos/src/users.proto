@@ -38,6 +38,7 @@ message ListUsersOptions {
 }
 message ListUsersRequest {
   ListUsersOptions options = 1;
+  repeated string id = 2;
 }
 message ListUsersResponse {
   google.rpc.Status status = 1;

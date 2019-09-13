@@ -1,7 +1,7 @@
 import { Dictionary } from 'ts-essentials';
 import { Discount } from '@hash/protos/dist/discounts_pb';
-import User from '../models/User';
-import Product from '../models/Product';
+import User from '../services/User';
+import Product from '../services/Product';
 
 export interface Context {
   readonly user: User;

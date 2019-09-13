@@ -1,7 +1,14 @@
 ## To ask
 
+- multitier architecture
+- flertar com flat structure
+- why idLength not hard coded
+- readme utils
+- logger users
+- soft delete
 - why i'm using postgres?
-- pagination
+- pagination users
+- run tests in different databases
 - rpc authentication?
 - why get the product two times?
 - think about cupom code and default discount
@@ -22,9 +29,12 @@
 - Products management
 - Discounts logics
 - max price = 2^31 / 100
+- why it doesn't have a stream or array request?
 
 ## TODO
 
+- with DI I can transform apps in libraries
+- improve memoize and typings
 - write readmes
 - lerna
 - improvements tests uses env data

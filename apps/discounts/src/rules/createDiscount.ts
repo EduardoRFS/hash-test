@@ -1,5 +1,5 @@
 import { Discount } from '@hash/protos/dist/discounts_pb';
-import Product from '../models/Product';
+import Product from '../services/Product';
 
 // pct as percentage, like 5%
 const createDiscount = (product: Product, pct: number) => {

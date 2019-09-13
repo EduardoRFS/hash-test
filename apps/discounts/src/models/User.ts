@@ -14,5 +14,4 @@ class User {
   @Column('timestamp')
   public dateOfBirth!: Date;
 }
-
 export default User;

@@ -8,5 +8,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "resolutions": {
+    "@types/node": "https://github.com/EduardoRFS/types-node.git#6c454721f766383c872f87c24252be7391f90261"
+  }
 }

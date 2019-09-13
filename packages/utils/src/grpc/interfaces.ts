@@ -1,6 +1,4 @@
 import { Status } from '@hash/protos/dist/google_status_pb';
-import yup from 'yup';
-import { Cache } from '../cache';
 
 export interface Request {
   toObject(): object;

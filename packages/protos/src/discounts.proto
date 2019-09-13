@@ -3,12 +3,19 @@ syntax = "proto3";
 package hash.test;
 
 service DiscountsService {
-  rpc GetDiscount(DiscountRequest) returns (Discount) {}
+  rpc FindDiscount(DiscountRequest) returns (DiscountResponse) {}
 }
 
-message ReadDiscountOptions { bool cache = 1; }
+message ReadDiscountOptions {
+  uint32 cache_age = 1;
+}
 
 message DiscountRequest {
+  ReadDiscountOptions option = 1;
+  string product_id = 2;
+  string user_id = 3;
+}
+message DiscountResponse {
   ReadDiscountOptions option = 1;
   string product_id = 2;
   string user_id = 3;

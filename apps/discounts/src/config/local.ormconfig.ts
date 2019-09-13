@@ -1,8 +1,8 @@
 import path from 'path';
 import { ConnectionOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import Product from '../models/Product';
-import User from '../models/User';
+import Product from '../services/Product';
+import User from '../services/User';
 
 const connections: ConnectionOptions[] = [
   {

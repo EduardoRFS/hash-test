@@ -1,7 +1,7 @@
 import { Discount } from '@hash/protos/dist/discounts_pb';
 import R from 'ramda';
-import User from '../models/User';
-import Product from '../models/Product';
+import User from '../services/User';
+import Product from '../services/Product';
 import rules from './discountRules';
 import { Context } from './interfaces';
 

@@ -1,13 +1,10 @@
 import { memoize } from '@hash/utils';
-import { create, find, findById, findByIds } from './models/User';
+import * as service from './services/user';
 import config from './config';
 
 const dependencies = {
   config,
-  create,
-  find,
-  findById,
-  findByIds,
+  ...service,
   cache: memoize.cache(config.cache),
 };
 export default dependencies;

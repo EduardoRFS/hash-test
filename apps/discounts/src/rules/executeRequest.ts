@@ -1,11 +1,11 @@
-import { Discount, DiscountRequest } from '@hash/protos/dist/discounts_pb';
+import { Discount } from '@hash/protos/dist/discounts_pb';
 import R from 'ramda';
-import User from '../models/User';
-import Product from '../models/Product';
+import User from '../services/User';
+import Product from '../services/Product';
 import findByIds from '../utils/findByIds';
 import findDiscount from './findDiscount';
 
-const executeRequest = async (requests: DiscountRequest[]) => {
+const executeRequest = async (requests: [User, Product][]) => {
   const productIds = requests.map(request => request.getProductId());
   const userIds = requests.map(request => request.getUserId());
 
