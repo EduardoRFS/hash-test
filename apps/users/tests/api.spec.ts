@@ -28,7 +28,7 @@ interface Context {
 }
 
 const setup = async (state: Context): Promise<Context> => {
-  const createUser = (i: number = Math.random()): Model.User => ({
+  const createUser = (i: number = Math.random()) => ({
     createdAt: new Date(),
     id: uuid(),
     firstName: `User ${i}`,

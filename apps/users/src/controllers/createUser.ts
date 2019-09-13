@@ -3,8 +3,7 @@ import compose from '@malijs/compose';
 import { createValidation, createRespond } from '@hash/utils';
 import { CreateUserResponse } from '@hash/protos/dist/users_pb';
 import { CreateUser } from './interfaces';
-import { Create } from '../models/User';
-import { toProto } from '../services/user';
+import { Create, toMessage } from '../models/User';
 
 interface DI {
   create: Create;
@@ -30,13 +29,13 @@ export default ({ create, config }: DI) => {
   );
 
   const createUser: CreateUser = async ctx => {
-    const user = await create({
+    const model = await create({
       firstName: ctx.req.getFirstName(),
       lastName: ctx.req.getLastName(),
       dateOfBirth: new Date(ctx.req.getDateOfBirth()),
     });
-
-    ctx.res = ok(res => res.setUser(toProto(user)));
+    const user = toMessage(model);
+    ctx.res = ok(res => res.setUser(user));
   };
   return compose([validate, createUser]);
 };

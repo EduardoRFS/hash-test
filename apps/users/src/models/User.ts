@@ -1,3 +1,4 @@
+import { User as UserMessage } from '@hash/protos/dist/users_pb';
 import {
   Entity,
   Column,
@@ -34,7 +35,14 @@ export const find = (options?: FindConditions<User>) =>
   getRepository(User).find(options);
 export const findById = (id: string) => getRepository(User).findOne({ id });
 export const findByIds = (ids: string[]) => getRepository(User).findByIds(ids);
-
+export const toMessage = (model: User) => {
+  const proto = new UserMessage();
+  proto.setId(model.id);
+  proto.setFirstName(model.firstName);
+  proto.setLastName(model.lastName);
+  proto.setDateOfBirth(model.dateOfBirth.getTime());
+  return proto;
+};
 export type Create = typeof create;
 export type Find = typeof find;
 export type FindById = typeof findById;

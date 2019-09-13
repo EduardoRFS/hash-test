@@ -3,8 +3,7 @@ import compose from '@malijs/compose';
 import { createRespond, createValidation, memoize } from '@hash/utils';
 import { ReadUserResponse } from '@hash/protos/dist/users_pb';
 import { ReadUser } from './interfaces';
-import { FindById } from '../models/User';
-import { toProto } from '../services/user';
+import { FindById, toMessage } from '../models/User';
 
 interface DI {
   cache: memoize.Cache;
@@ -25,8 +24,10 @@ export default ({ cache, config, findById }: DI) => {
 
   const readUser: ReadUser = async ctx => {
     const id = ctx.req.getId();
-    const user = await findById(id);
-    ctx.res = user ? ok(res => res.setUser(toProto(user))) : notFound();
+    const model = await findById(id);
+    const user = model && toMessage(model);
+
+    ctx.res = user ? ok(res => res.setUser(user)) : notFound();
   };
   return memoize(compose([validate, readUser]), cache);
 };

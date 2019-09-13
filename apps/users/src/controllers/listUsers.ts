@@ -3,8 +3,7 @@ import compose from '@malijs/compose';
 import { createRespond, createValidation, memoize } from '@hash/utils';
 import { ListUsersResponse } from '@hash/protos/dist/users_pb';
 import { ListUsers } from './interfaces';
-import { Find, FindByIds } from '../models/User';
-import { toProto } from '../services/user';
+import { Find, FindByIds, toMessage } from '../models/User';
 
 interface DI {
   cache: memoize.Cache;
@@ -26,10 +25,10 @@ export default ({ cache, config, find, findByIds }: DI) => {
 
   const listUsers: ListUsers = async ctx => {
     const ids = ctx.req.getIdList();
-    const users = await (ids.length ? findByIds(ids) : find());
-    const protos = users.map(toProto);
+    const models = await (ids.length ? findByIds(ids) : find());
+    const users = models.map(toMessage);
 
-    ctx.res = ok(res => res.setUsersList(protos));
+    ctx.res = ok(res => res.setUsersList(users));
   };
   return memoize(compose([validate, listUsers]), cache);
 };
