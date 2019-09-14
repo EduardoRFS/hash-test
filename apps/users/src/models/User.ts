@@ -43,6 +43,7 @@ export const toMessage = (model: User) => {
   proto.setDateOfBirth(model.dateOfBirth.getTime());
   return proto;
 };
+
 export type Create = typeof create;
 export type Find = typeof find;
 export type FindById = typeof findById;

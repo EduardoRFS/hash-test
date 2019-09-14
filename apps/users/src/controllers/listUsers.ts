@@ -1,6 +1,11 @@
 import * as yup from 'yup';
 import compose from '@malijs/compose';
-import { createRespond, createValidation, memoize } from '@hash/utils';
+import {
+  errorHandler,
+  createRespond,
+  createValidation,
+  memoize,
+} from '@hash/utils';
 import { ListUsersResponse } from '@hash/protos/dist/users_pb';
 import { ListUsers } from './interfaces';
 import { Find, FindByIds, toMessage } from '../models/User';
@@ -15,7 +20,7 @@ interface DI {
 }
 
 export default ({ cache, config, find, findByIds }: DI) => {
-  const { ok } = createRespond(ListUsersResponse);
+  const errors = errorHandler(ListUsersResponse);
   const validate = createValidation(
     ListUsersResponse,
     yup.object({
@@ -23,6 +28,7 @@ export default ({ cache, config, find, findByIds }: DI) => {
     })
   );
 
+  const { ok } = createRespond(ListUsersResponse);
   const listUsers: ListUsers = async ctx => {
     const ids = ctx.req.getIdList();
     const models = await (ids.length ? findByIds(ids) : find());
@@ -30,5 +36,5 @@ export default ({ cache, config, find, findByIds }: DI) => {
 
     ctx.res = ok(res => res.setUsersList(users));
   };
-  return memoize(compose([validate, listUsers]), cache);
+  return memoize(compose([errors, validate, listUsers]), cache);
 };

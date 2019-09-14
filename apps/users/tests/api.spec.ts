@@ -70,7 +70,7 @@ describe<Context>('createUser', ({ test, beforeAll }) => {
     }
     return service.createUser(request);
   };
-  test('createUser', async ({ service }) => {
+  test('user creation', async ({ service }) => {
     const response = await request(service, 'Edu', 'Dudu', 937519079881);
     const status = response.getStatus() as Status;
     const user = response.getUser() as User;
@@ -83,7 +83,7 @@ describe<Context>('createUser', ({ test, beforeAll }) => {
     expect(user.getLastName()).toBe('Dudu');
     expect(user.getDateOfBirth()).toBe(937519079881);
   });
-  test('validation fail', async ({ service }) => {
+  test('input validation', async ({ service }) => {
     const assert = (response: CreateUserResponse) => {
       const status = response.getStatus() as Status;
       const user = response.getUser() as User;
