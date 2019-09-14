@@ -1,4 +1,4 @@
-import createCache from '../src/cache';
+import createCache from '../cache';
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -28,16 +28,16 @@ test('maxSize', () => {
   expect(cache.get('c')).toBe(valueC);
 });
 test('maxAge', async () => {
-  const cache = createCache<string, number>({ maxSize: 1, maxAge: 20 });
+  const cache = createCache<string, number>({ maxSize: 1, maxAge: 200 });
   const value = Math.random();
 
   cache.set('maxAge', value);
   expect(cache.get('maxAge')).toBe(value);
 
-  await sleep(10);
+  await sleep(100);
   expect(cache.get('maxAge')).toBe(value);
-  expect(cache.get('maxAge', 5)).toBe(undefined);
+  expect(cache.get('maxAge', 50)).toBe(undefined);
 
-  await sleep(15);
+  await sleep(150);
   expect(cache.get('maxAge')).toBe(undefined);
 });

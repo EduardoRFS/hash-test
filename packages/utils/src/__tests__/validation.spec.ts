@@ -1,10 +1,10 @@
 import * as yup from 'yup';
-import validation from '../src/grpc/validation';
+import validation from '../grpc/validation';
 import {
   ReadUserResponse,
   ReadUserRequest,
   ReadUserOptions,
-} from './proto/users_pb';
+} from './protos/users_pb';
 
 const createContext = (id: string, cacheAge: number) => {
   const options = new ReadUserOptions();

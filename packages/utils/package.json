@@ -38,6 +38,9 @@
     "ramda.map": "^0.26.1",
     "yup": "^0.27.0"
   },
+  "eslintIgnore": [
+    "src/__tests__/protos"
+  ],
   "prettier": {
     "tabWidth": 2,
     "singleQuote": true,
@@ -49,8 +52,9 @@
       "<rootDir>/tests"
     ],
     "collectCoverageFrom": [
-      "!tests/proto/**"
+      "!src/__tests__/protos/**"
     ],
+    "testRegex": "(\\.|/)(test|spec)\\.[jt]sx?$",
     "preset": "ts-jest/presets/js-with-ts"
   }
 }

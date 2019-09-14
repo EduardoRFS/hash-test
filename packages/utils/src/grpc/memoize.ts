@@ -11,10 +11,11 @@ function memoize<
     const key = ctx.req.serializeBinary().toString();
     const request = ctx.req.toObject();
     const age = request.options && request.options.cacheAge;
-    const value = age && cache.get(key, age);
+    const value = cache.get(key, age);
 
     if (value) {
       ctx.res = value.res;
+      return;
       // return value.data;
     }
 
