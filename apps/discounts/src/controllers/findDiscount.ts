@@ -1,20 +1,20 @@
 import * as yup from 'yup';
 import compose from '@malijs/compose';
 import { createRespond, createValidation, memoize } from '@hash/utils';
-import { ReadUserResponse } from '@hash/protos/dist/users_pb';
+import { FindDiscountResponse } from '@hash/protos/dist/discounts_pb';
 import { FindDiscount } from './interfaces';
-import { FindById, toProto } from '../services/user';
+import { FindDiscounts } from '../services/findDiscounts';
 
 interface DI {
   cache: memoize.Cache;
-  findUser: FindUser;
-  findProduct: FindProduct;
+  services: {
+    findDiscounts: FindDiscounts;
+  };
 }
-
-export default ({ cache, findUser, findProduct }: DI) => {
-  const { ok, notFound } = createRespond(ReadUserResponse);
+export default ({ cache, services }: DI) => {
+  const { ok } = createRespond(FindDiscountResponse);
   const validate = createValidation(
-    ReadUserResponse,
+    FindDiscountResponse,
     yup.object({
       productId: yup.string().required(),
       userId: yup.string().required(),
@@ -22,9 +22,11 @@ export default ({ cache, findUser, findProduct }: DI) => {
   );
 
   const findDiscount: FindDiscount = async ctx => {
-    const id = ctx.req.getId();
-    const user = await findById(id);
-    ctx.res = user ? ok(res => res.setUser(toProto(user))) : notFound();
+    const productId = ctx.req.getProductId();
+    const userId = ctx.req.getUserId();
+
+    const [discount] = await services.findDiscounts([{ productId, userId }]);
+    ctx.res = ok(res => res.setDiscount(discount));
   };
   return memoize(compose([validate, findDiscount]), cache);
 };

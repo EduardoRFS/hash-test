@@ -1,7 +1,12 @@
 ## To ask
 
+- some images
+- fix typeorm scripts
+- what happen if a service dies then you try to make a request, grpc-node
+- why discount can be negative?
 - multitier architecture
 - flertar com flat structure
+- global error handling
 - why idLength not hard coded
 - readme utils
 - logger users

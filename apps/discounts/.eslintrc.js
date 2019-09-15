@@ -17,7 +17,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/__tests__/**/*.ts', '*.spec.ts'],
+      files: ['**/__tests__/**/*.spec.ts', '*.spec.ts'],
       extends: ['plugin:jest/recommended'],
       rules: {
         'jest/valid-describe': 0,

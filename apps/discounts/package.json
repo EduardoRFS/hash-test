@@ -21,8 +21,8 @@
     "@types/node": "https://github.com/EduardoRFS/types-node.git#6c454721f766383c872f87c24252be7391f90261",
     "@types/ramda": "^0.26.18",
     "@types/uuid": "^3.4.5",
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^1.13.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-airbnb-typescript": "^4.0.1",
@@ -49,7 +49,6 @@
     "ramda": "^0.26.1",
     "reflect-metadata": "^0.1.13",
     "ts-essentials": "^3.0.1",
-    "typeorm": "^0.2.18",
     "typeorm-naming-strategies": "^1.1.0",
     "yup": "^0.27.0"
   },
@@ -63,6 +62,7 @@
       "<rootDir>/src",
       "<rootDir>/tests"
     ],
+    "testRegex": "(\\.|/)(test|spec)\\.[jt]sx?$",
     "preset": "ts-jest/presets/js-with-ts"
   }
 }
