@@ -4,6 +4,7 @@
       "ms-azuretools.vscode-docker",
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
+      "ms-vscode.go",
       "zxh404.vscode-proto3"
     ]
   },

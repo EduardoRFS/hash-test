@@ -17,23 +17,17 @@ grpc_tools_node_protoc \
   --grpc_out=${DIST} \
   --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` \
   -I ${SRC} \
-  ${SRC}/*.proto
+  ${SRC}/**/*.proto
 
 grpc_tools_node_protoc \
   --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
   --ts_out=${DIST} \
   -I ${SRC} \
-  ${SRC}/*.proto
+  ${SRC}/**/*.proto
 
-# Elixir
-# mix;
-
-# $PROTOC \
-#   --elixir_out=plugins=grpc:${DIST} \
-#   -I ${SRC} \
-#   ${SRC}/*.proto
-
-# $GRPC_DIR/bin/protoc \
-#   --elixir_out=plugins=grpc:./lib/ \
-#   -I ${SRC} \
-#   ${SRC}/*.proto
+for i in $(find ${SRC} -name \*.proto); do #
+  $PROTOC \
+    --go_out=plugins=grpc,paths=import:${DIST} \
+    -I ${SRC} \
+    $i
+done

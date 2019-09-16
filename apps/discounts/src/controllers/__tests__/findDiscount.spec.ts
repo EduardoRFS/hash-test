@@ -6,8 +6,8 @@ import {
   FindDiscountResponse,
 } from '@hash/protos/dist/discounts_pb';
 import { memoize } from '@hash/utils';
-import { Code } from '@hash/protos/dist/google_code_pb';
-import { Status } from '@hash/protos/dist/google_status_pb';
+import { Code } from '@hash/protos/dist/google/code_pb';
+import { Status } from '@hash/protos/dist/google/status_pb';
 import createFindDiscount from '../findDiscount';
 
 const request = async (

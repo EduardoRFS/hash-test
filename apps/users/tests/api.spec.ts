@@ -12,8 +12,8 @@ import {
   ListUsersOptions,
 } from '@hash/protos/dist/users_pb';
 import { UsersServiceClient } from '@hash/protos/dist/users_grpc_pb';
-import { Status } from '@hash/protos/dist/google_status_pb';
-import { Code } from '@hash/protos/dist/google_code_pb';
+import { Status } from '@hash/protos/dist/google/status_pb';
+import { Code } from '@hash/protos/dist/google/code_pb';
 import { getRepository } from 'typeorm';
 import * as Model from '../src/models/User';
 import env from '../src/config';

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hash.test;
 
-import "google_status.proto";
+import "google/status.proto";
 
 service UsersService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);

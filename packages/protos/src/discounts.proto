@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hash.test;
 
-import "google_status.proto";
+import "google/status.proto";
 
 service DiscountsService {
   rpc FindDiscount(FindDiscountRequest) returns (FindDiscountResponse) {}
@@ -40,5 +40,5 @@ message FindDiscountsResponse {
 
 message Discount {
   float pct = 1;
-  int32 value_in_cents = 2;
+  int64 value_in_cents = 2;
 }

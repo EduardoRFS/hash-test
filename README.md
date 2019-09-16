@@ -1,8 +1,10 @@
 ## To ask
 
 - some images
+- run migrations at start
 - fix typeorm scripts
 - what happen if a service dies then you try to make a request, grpc-node
+
 - why discount can be negative?
 - multitier architecture
 - flertar com flat structure
