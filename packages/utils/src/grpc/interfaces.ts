@@ -1,4 +1,4 @@
-import { Status } from '@hash/protos/dist/google_status_pb';
+import { Status } from '@hash/protos/dist/google/status_pb';
 
 export interface Request {
   toObject(): object;

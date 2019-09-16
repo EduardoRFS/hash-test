@@ -1,6 +1,6 @@
-import { Code } from '@hash/protos/dist/google_code_pb';
-import { Status } from '@hash/protos/dist/google_status_pb';
-import { Any } from '@hash/protos/dist/google_any_pb';
+import { Code } from '@hash/protos/dist/google/code_pb';
+import { Status } from '@hash/protos/dist/google/status_pb';
+import { Any } from '@hash/protos/dist/google/any_pb';
 import mapValues from 'lodash.mapvalues';
 import { Class, Response } from './interfaces';
 

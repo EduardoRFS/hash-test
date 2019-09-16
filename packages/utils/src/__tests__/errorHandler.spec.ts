@@ -1,7 +1,7 @@
+import { Status } from '@hash/protos/dist/google/status_pb';
+import { Code } from '@hash/protos/dist/google/code_pb';
+import { ReadUserResponse } from '@hash/protos/dist/users_pb';
 import errorHandler from '../grpc/errorHandler';
-import { ReadUserResponse } from './protos/users_pb';
-import { Status } from './protos/google_status_pb';
-import { Code } from './protos/google_code_pb';
 
 const assert = async (next: () => unknown, message?: string) => {
   const context = { res: new ReadUserResponse() };

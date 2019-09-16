@@ -1,5 +1,5 @@
-import { Status } from './protos/google_status_pb';
-import { ReadUserResponse, User } from './protos/users_pb';
+import { Status } from '@hash/protos/dist/google/status_pb';
+import { ReadUserResponse, User } from '@hash/protos/dist/users_pb';
 import createRespond, { namingMap } from '../grpc/respond';
 
 type Keys = keyof typeof namingMap;

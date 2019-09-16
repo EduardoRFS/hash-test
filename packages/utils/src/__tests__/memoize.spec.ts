@@ -2,7 +2,7 @@ import {
   ReadUserRequest,
   ReadUserOptions,
   ReadUserResponse,
-} from './protos/users_pb';
+} from '@hash/protos/dist/users_pb';
 import memoize from '../grpc/memoize';
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

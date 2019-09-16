@@ -1,6 +1,6 @@
+import { ReadUserResponse } from '@hash/protos/dist/users_pb';
+import { Status } from '@hash/protos/dist/google/status_pb';
 import createLogger from '../grpc/logger';
-import { ReadUserResponse } from './protos/users_pb';
-import { Status } from './protos/google_status_pb';
 
 test('it works', async () => {
   const log = jest.fn();
