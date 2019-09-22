@@ -24,8 +24,8 @@ const config: Config = {
     maxSize: 10240,
   },
   services: {
-    users: 'api-users',
-    products: 'api-products',
+    users: 'api-users:50051',
+    products: 'api-products:50051',
   },
   discount: {
     birthday: { percentage: 5 },

@@ -11,9 +11,7 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "tsc",
-    "typeorm": "./typeorm.sh",
-    "migration:run": "yarn typeorm migration:run -c products & yarn typeorm migration:run -c users",
-    "start": "yarn migration:run; NODE_ENV=production node dist/src/index.js"
+    "start": "NODE_ENV=production node dist/src/index.js"
   },
   "devDependencies": {
     "@types/date-fns": "^2.6.0",
@@ -45,11 +43,9 @@
     "date-fns": "^2.0.1",
     "grpc": "https://github.com/EduardoRFS/grpc-native-core.git#20ba246427f179d5eaaf99bcca893fd7ccc29689",
     "mali": "https://github.com/EduardoRFS/mali.git#b7de8855b5413b65f41a4943f6b4c9f2c12fd425",
-    "pg": "^7.12.1",
     "ramda": "^0.26.1",
     "reflect-metadata": "^0.1.13",
     "ts-essentials": "^3.0.1",
-    "typeorm-naming-strategies": "^1.1.0",
     "yup": "^0.27.0"
   },
   "prettier": {

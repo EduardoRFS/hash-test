@@ -1,6 +1,11 @@
 import * as yup from 'yup';
 import compose from '@malijs/compose';
-import { createRespond, createValidation, memoize } from '@hash/utils';
+import {
+  createRespond,
+  createValidation,
+  memoize,
+  errorHandler,
+} from '@hash/utils';
 import { FindDiscountsResponse } from '@hash/protos/dist/discounts_pb';
 import { FindDiscounts } from './interfaces';
 import { FindDiscounts as FindDiscountsService } from '../services/findDiscounts';
@@ -13,7 +18,7 @@ interface DI {
 }
 
 export default ({ cache, services }: DI) => {
-  const { ok } = createRespond(FindDiscountsResponse);
+  const errors = errorHandler(FindDiscountsResponse);
   const validate = createValidation(
     FindDiscountsResponse,
     yup.object({
@@ -21,13 +26,14 @@ export default ({ cache, services }: DI) => {
         yup
           .object({
             productId: yup.string().required(),
-            userId: yup.string().required(),
+            userId: yup.string(),
           })
           .required()
       ),
     })
   );
 
+  const { ok } = createRespond(FindDiscountsResponse);
   const findDiscounts: FindDiscounts = async ctx => {
     const requests = ctx.req
       .getRequestsList()
@@ -36,5 +42,5 @@ export default ({ cache, services }: DI) => {
     const discounts = await services.findDiscounts(requests);
     ctx.res = ok(res => res.setDiscountList(discounts));
   };
-  return memoize(compose([validate, findDiscounts]), cache);
+  return memoize(compose([errors, validate, findDiscounts]), cache);
 };

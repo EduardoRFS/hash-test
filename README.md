@@ -1,5 +1,7 @@
 ## To ask
 
+- why request by id instead of sending product
+- grpc ssl
 - some images
 - run migrations at start
 - fix typeorm scripts

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hash.test;
+package protos;
 
 import "google/status.proto";
 

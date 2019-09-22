@@ -35,7 +35,6 @@
     "@hash/protos": "0.0.0",
     "lodash.mapvalues": "^4.6.0",
     "lru-cache": "^5.1.1",
-    "ramda.map": "^0.26.1",
     "yup": "^0.27.0"
   },
   "eslintIgnore": [

@@ -10,14 +10,21 @@ services:
     environment:
       POSTGRES_DB: products
       POSTGRES_PASSWORD: ai_tem_de_mudar_isso_aqui
-  api-discounts:
+  api-users:
     depends_on:
       - "db-users"
+    build:
+      context: .
+      dockerfile: apps/users/Dockerfile
+  api-products:
+    depends_on:
       - "db-products"
     build:
       context: .
-      dockerfile: apps/discounts/Dockerfile
+      dockerfile: apps/products/Dockerfile
     ports:
-      - "50051:50051"
-    environment:
-      ENV_NAME: "docker"
+      - "8080:8080"
+  api-discounts:
+    build:
+      context: .
+      dockerfile: apps/discounts/Dockerfile
