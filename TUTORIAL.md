@@ -1,13 +1,13 @@
 ## Requerimentos
 
-- yarn instalado ... [guia de instação](https://yarnpkg.com/en/docs/install#alternatives-stable)
+- docker e docker-compose instalado
 
 ## Deploy
 
 Sobe, aplicações e bancos de dados, definidos no docker-compose.yml
 
 ```sh
-yarn deploy # /
+docker-compose up --build -d # /
 ```
 
 ## Populate
@@ -15,7 +15,7 @@ yarn deploy # /
 Para rodar migrations no banco de dados e popular os dados
 
 ```sh
-yarn populate # /
+./POPULATE.sh # /
 ```
 
 ## Testar
