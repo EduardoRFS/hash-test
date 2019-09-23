@@ -21,8 +21,14 @@ export default ({ services, models }: DI) => {
     const userIds = pairs.map(pair => pair.userId);
 
     const [productsById, usersById] = await Promise.all([
-      models.products.findByIds(productIds),
-      models.users.findByIds(userIds),
+      models.products.findByIds(productIds).catch(err => {
+        console.log('products');
+        throw err;
+      }),
+      models.users.findByIds(userIds).catch(err => {
+        console.log('users');
+        throw err;
+      }),
     ]);
 
     return pairs.map(({ productId, userId }) => {

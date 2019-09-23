@@ -5,6 +5,7 @@ import (
 	"net"
 
 	"github.com/EduardoRFS/hash-test/apps/products/models"
+	"github.com/EduardoRFS/hash-test/apps/products/services"
 
 	pb "github.com/EduardoRFS/hash-test/packages/protos/dist"
 	"github.com/go-pg/pg/v9"
@@ -14,7 +15,8 @@ import (
 )
 
 type productsServer struct {
-	db *pg.DB
+	db      *pg.DB
+	service *services.ProductService
 }
 
 func (s *productsServer) CreateProduct(ctx context.Context, req *pb.CreateProductRequest) (*pb.CreateProductResponse, error) {
@@ -53,9 +55,6 @@ func (s *productsServer) ReadProduct(ctx context.Context, req *pb.ReadProductReq
 		}, nil
 	}
 
-	if req.Options != nil && req.Options.Discount {
-
-	}
 	return &pb.ReadProductResponse{
 		Status: &status.Status{
 			Code: code.Code_value["OK"],
@@ -95,9 +94,10 @@ func (s *productsServer) ListProducts(ctx context.Context, req *pb.ListProductsR
 	}, nil
 }
 
-func StartProductServer(db *pg.DB, listen string) net.Listener {
+func StartProductServer(db *pg.DB, discountClient pb.DiscountsServiceClient, listen string) net.Listener {
 	server := grpc.NewServer()
-	productServer := &productsServer{db: db}
+	productServer := &productsServer{
+		db: db, service: services.NewProductService(discountClient)}
 	pb.RegisterProductsServiceServer(server, productServer)
 
 	lis, err := net.Listen("tcp", listen)

@@ -17,8 +17,3 @@ cd /code/apps/products
 go run migrations/*.go init
 go run migrations/*.go up
 ' | docker run --rm -i --network=hash-test_default -v $PWD:/code golang:1.13-alpine /bin/ash
-
-echo '
-cd /code/apps/users
-yarn test
-' | docker run --rm -i --network=hash-test_default -v $PWD:/code node:12-alpine /bin/ash

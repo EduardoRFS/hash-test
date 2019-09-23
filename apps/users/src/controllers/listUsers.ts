@@ -31,7 +31,6 @@ export default ({ cache, config, find, findByIds }: DI) => {
   const { ok } = createRespond(ListUsersResponse);
   const listUsers: ListUsers = async ctx => {
     const ids = ctx.req.getIdList();
-    console.log('abc');
     const models = await (ids.length ? findByIds(ids) : find());
     const users = models.map(toMessage);
 

@@ -44,7 +44,7 @@ func (app *App) startDiscountClient() {
 	app.discountClient = pb.NewDiscountsServiceClient(conn)
 }
 func (app *App) startGRPC() {
-	lis := rpc.StartProductServer(app.db, app.config.ListenGRPC)
+	lis := rpc.StartProductServer(app.db, app.discountClient, app.config.ListenGRPC)
 	defer lis.Close()
 }
 func (app *App) startHTTP() {
