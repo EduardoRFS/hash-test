@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package protos;
+
+import "google/status.proto";
+import "discounts.proto";
+
+service ProductsService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  rpc ReadProduct(ReadProductRequest) returns (ReadProductResponse);
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse);
+}
+
+message CreateProductRequest {
+  // all of them are required
+  uint64 price_in_cents = 1;
+  string title = 2;
+  string description = 3;
+}
+message CreateProductResponse {
+  google.rpc.Status status = 1;
+  Product product = 2;
+}
+
+message ReadProductOptions {
+  uint32 cache_age = 1;
+  bool discount = 2;
+}
+message ReadProductRequest {
+  ReadProductOptions options = 1;
+  string id = 2;
+}
+message ReadProductResponse {
+  google.rpc.Status status = 1;
+  Product product = 2;
+}
+
+message ListProductsOptions {
+  uint32 cache_age = 1;
+  bool discount = 2;
+}
+message ListProductsRequest {
+  ListProductsOptions options = 1;
+  repeated string id = 2;
+}
+message ListProductsResponse {
+  google.rpc.Status status = 1;
+  repeated Product products = 2;
+}
+
+message Product {
+  string id = 1;
+  uint64 price_in_cents = 2;
+  string title = 3;
+  string description = 4;
+  Discount discount = 5;
+}

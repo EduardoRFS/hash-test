@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package protos;
+
+import "google/status.proto";
+
+service DiscountsService {
+  rpc FindDiscount(FindDiscountRequest) returns (FindDiscountResponse) {}
+  rpc FindDiscounts(FindDiscountsRequest) returns (FindDiscountsResponse) {}
+}
+
+message FindDiscountOptions {
+  uint32 cache_age = 1;
+}
+message FindDiscountRequest {
+  FindDiscountOptions options = 1;
+  string product_id = 2;
+  string user_id = 3;
+}
+message FindDiscountResponse {
+  google.rpc.Status status = 1;
+  Discount discount = 2;
+}
+
+message DiscountRequest {
+  string product_id = 1;
+  string user_id = 2;
+}
+message FindDiscountsOptions {
+  uint32 cache_age = 1;
+}
+message FindDiscountsRequest {
+  FindDiscountsOptions options = 1;
+  repeated DiscountRequest requests = 2;
+}
+message FindDiscountsResponse {
+  google.rpc.Status status = 1;
+  repeated Discount discount = 2;
+}
+
+message Discount {
+  float pct = 1;
+  int64 value_in_cents = 2;
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@hash/utils",
+  "version": "0.0.0",
+  "main": "dist/src/index.js",
+  "author": "EduardoRFS <theeduardorfs@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=10.9"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.16",
+    "@types/lodash.mapvalues": "^4.6.6",
+    "@types/lru-cache": "^5.1.0",
+    "@types/yup": "^0.26.23",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-airbnb-typescript": "^4.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.14.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@hash/protos": "0.0.0",
+    "lodash.mapvalues": "^4.6.0",
+    "lru-cache": "^5.1.1",
+    "yup": "^0.27.0"
+  },
+  "eslintIgnore": [
+    "src/__tests__/protos"
+  ],
+  "prettier": {
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/tests"
+    ],
+    "collectCoverageFrom": [
+      "!src/__tests__/protos/**"
+    ],
+    "testRegex": "(\\.|/)(test|spec)\\.[jt]sx?$",
+    "preset": "ts-jest/presets/js-with-ts"
+  }
+}

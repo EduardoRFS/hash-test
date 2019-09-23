@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "scripts": {
+    "containers": "docker inspect --format='{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -a)",
+    "databases": "yarn containers | grep db",
+    "populate": "./POPULATE.sh",
+    "deploy": "docker-compose up --build -d"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "resolutions": {
+    "@types/node": "https://github.com/EduardoRFS/types-node.git#6c454721f766383c872f87c24252be7391f90261"
+  }
+}

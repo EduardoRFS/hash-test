@@ -1,0 +1,30 @@
+version: "3"
+services:
+  db-users:
+    image: postgres
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_PASSWORD: ai_tem_de_mudar_isso_aqui
+  db-products:
+    image: postgres
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_PASSWORD: ai_tem_de_mudar_isso_aqui
+  api-users:
+    depends_on:
+      - "db-users"
+    build:
+      context: .
+      dockerfile: apps/users/Dockerfile
+  api-products:
+    depends_on:
+      - "db-products"
+    build:
+      context: .
+      dockerfile: apps/products/Dockerfile
+    ports:
+      - "8080:8080"
+  api-discounts:
+    build:
+      context: .
+      dockerfile: apps/discounts/Dockerfile
